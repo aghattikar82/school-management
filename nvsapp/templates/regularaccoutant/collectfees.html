@@ -1,0 +1,93 @@
+  <!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Fees Report </title>
+		<script type="text/javascript">
+        function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
+	</script>
+</head>
+<body>
+	{% include "design/accountantmid.html" %}	
+<center>
+{%for id in Institutiondata %}
+  <h2><img  src="media/{{id.logo}}" style="height:50px;">{{id.institutename}}</h2>
+  {{id.address}}<br/>
+  Mobile No:{{id.mobilenumber}}<br/>
+
+{%endfor%}
+</center>
+{% if feepaiddata %}
+{% for f in feepaiddata %}
+  <div id="printableArea" >
+<table class="table table-boarderd mt-3">
+  <tr>
+  <td><b>Reciept No:</b> {{f.id}}</td><td align="right"><b>Date:</b> {{f.createdonind}}</td>
+</tr>
+  <tr>
+    <td><b>Student Name: </b>{{f.studentid.studentname}} {{f.studentid.fathername}} {{f.studentid.surname}}</td><td align="right"><b>Class: </b>{{f.studentid.chooseclass}} {{f.studentid.section}}</td>
+  </tr>
+<!--
+  <tr>
+    <td><b>Category: </b>{{d.category}}</td>
+    <td><b>Mobile Number: </b>{{d.mobileno}}</td>
+    <td><b>Address: </b> {{d.address}}</td>
+  </tr>
+-->
+<!--
+   <tr>
+    <td><b>Bus Facility: </b>{{d.busfacility}}</td>
+    <td><b>Hostel Facility: </b>{{d.hostelfacility}}</td>
+  </tr>
+-->
+ </table>
+
+<table class="table table-bordered" align="right">
+
+
+{% for h in feesheads %}
+<tr>
+  <td><b>{{h.feeshead}}</b></td>
+  <td>{{h.amount}}</td>
+</tr>
+{% endfor %}
+<tr>
+  <td><b>Total Fees</b></td>
+  <td>{{d.amount}}</td>
+</tr>
+<tr>
+  <td><b>Fees paid till date</b></td>
+  <td>{{studentfeesdatabalance}}</td>
+</tr>
+<tr>
+	<td><b>Fees paid now</b></td>
+	<td>{{f.amountpaid}}</td>
+</tr>
+<tr>
+  <td><b>Balance Fees</b></td>
+  <td>{{balanceamount}}</td>
+</tr>
+  {% endfor %}
+{% endfor %}
+</table>
+</div>
+         <center>
+ 			 <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-info" />       
+ 		</center> 
+ {% endif %}
+
+{% include "design/last.html" %}
+
+</html>

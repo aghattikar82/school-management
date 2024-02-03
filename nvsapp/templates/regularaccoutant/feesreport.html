@@ -1,0 +1,91 @@
+  <!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Fees Report </title>
+		<script type="text/javascript">
+        function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
+	</script>
+</head>
+<body>
+	{% include "design/accountantmid.html" %}	
+<h3>Fees Report</h3>
+<form autocomplete="off" name="frmfeedetails" method="POST"  >
+ <div class="container-fluid mt-3" >
+  <div class="input-group" align="center">	
+		<span class="col-2">
+			<select name="ddlfield" autofocus="on" required class="form-select">
+				<option value="">Search By </option>
+				<option value="studentid">Student Id</option>
+			
+			</select>
+		</span>
+		<span class="col-5">
+			<input type="text" name="txtsearch"  class="form-control" placeholder="Enter Student Id" required>
+		</span>
+    <input type="hidden" name="txtoperation"  value="1">      
+    <input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">			
+		
+		
+	</div>
+</div>
+
+{% csrf_token %}
+</form>
+{% if data %}
+ {% for d in data %}
+  <div id="printableArea" >
+<table class="table table-boarderd mt-3">
+   <tr>
+    <td><b>Student ID: </b>{{d.id}}</td>
+    <td><b>Student Name: </b>{{d.studentname}} {{d.fathername}} {{d.surname}}</td>
+    <td><b>Class: </b>{{d.chooseclass}} {{d.section}} Section</td>
+  </tr>	
+  <tr>
+    <td><b>Category: </b>{{d.category}}</td>
+    <td><b>Mobile Number: </b>{{d.mobileno}}</td>
+    <td><b>Address: </b> {{d.address}}</td>
+  </tr>
+ </table>
+  {% endfor %}
+
+<table class="table table-bordered" align="right">
+<tr>
+	<td><b>Reciept Id</b></td>
+	<td><b>Amount Paid</b></td>
+	<td><b>Payment Mode</b></td>
+	<td><b>Transaction Details</b></td>
+	<td><b>Paid Date</b></td>
+
+</tr>
+{% for f in feepaiddata %}
+	<tr>
+		<td>{{f.id}}</td>
+		<td>{{f.amountpaid}}</td>
+		<td>{{f.ddlpaymentmode}}</td>
+		<td>{{f.transactiondetials}}</td>
+		<td>{{f.createdon}}</td>
+	</tr>	
+{% endfor %}
+</table>
+</div>
+         <center>
+ 			 <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-info" />       
+ 		</center> 
+ {% endif %}
+
+{% include "design/last.html" %}
+
+</html>

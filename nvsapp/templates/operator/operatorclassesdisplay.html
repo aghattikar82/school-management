@@ -1,0 +1,87 @@
+  <!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Classess Display</title>
+	
+
+
+      
+	</script>
+
+
+</head>
+<body>
+  {% include "design/operatormid.html" %}
+  <h2>Student Class </h2>
+  <form autocomplete="off" name="searchrecord" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">
+  	<span class="col-4">
+			<select name="ddlfield" required class="form-select">
+				<option value="">Select Institute</option>
+				{% for i in institutedata %}
+				<option value="{{i.id}}">{{i.institutename}}</option>
+				{% endfor %}
+		</select>
+		</span>
+	
+  			
+		
+		<span class="col-2">
+			<select name="ddlfield" required class="form-select">
+				<option value="">Search By </option>
+				<option value="classid">Class Id</option>
+				<option value="classname">Class Name</option>
+				
+			</select>
+
+		</span>
+		<span class="col-5">
+			<input type="text" name="txtsearch" placeholder="Enter Id or Class Name" required class="form-control">
+		</span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">			
+		
+		
+	</div>
+</div>
+{% csrf_token %}
+</form>
+</body>
+ {% for d in data %}
+
+<table class="table table-bordered">
+	<tr>
+		<td><b>Class ID</b></td>
+		<td><b>Class Name</b></td>
+
+	</tr>
+	<tr>
+		<td>{{d.id}}</td>
+		<td>{{d.className}}</td>
+		<td>
+			<form name="searchrecord" method="POST">
+				<input type="hidden" name="cid" value="{{d.id}}">
+				<input type="submit" name="btnsubmit" value="Edit" class="btn btn-info">
+				<input type="submit" name="btnsubmit" value="Delete" class="btn btn-danger">
+			{% csrf_token %}
+			</form>
+		</td>
+
+		
+
+	</tr>
+
+</table>
+
+
+ {% endfor %}
+
+
+{% include "design/last.html" %}
+
+
+
+</html>

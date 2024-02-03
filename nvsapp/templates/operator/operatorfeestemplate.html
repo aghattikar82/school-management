@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<title>Fees Template</title>
+</head>
+<body>
+	{{msg}}
+	{% include "design/operatormid.html" %}
+	<form name="frmfeestype" method="post" autocomplete="off">
+		<input type="hidden" name="select_fee_type" value="Compulsory">
+		<h3>Fees Template</h3>
+			<div class="container-fluid mt-3" align="center" >
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6 mt-2" style="text-align:left;">
+							<label for="select"><font color="red" >*</font><b>Class/Course</b></label>
+							<select name="class" required class="form-select" autofocus="on">
+								<option  value="">Select Class/Course</option>
+							{% for i in classdata  %}		
+							<option value="{{i.id}}">{{i.className}}</option>
+							{% endfor %}
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6 mt-2" style="text-align:left;">
+							<label for="select"><font color="red" >*</font><b>Fees Term</b></label>
+							<select name="feesterm" required class="form-select">
+			                        <option value="">Select Fees Term</option>
+			                        <option value="1">Term-1</option>
+			                        <option value="2">Term-2</option>
+			                        <option value="12">Term-12</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6 mt-2" style="text-align:left;">
+							<label for="select"><font color="red" >*</font><b>Category</b></label>
+							<select name="category" required class="form-select">
+			                        <option value="">Select Category</option>
+			                        <option value="SC">SC</option>
+			                        <option value="ST">ST</option>
+			                        <option value="Category-I">Category-I</option>
+			                        <option value="IIA">IIA</option>
+			                        <option value="IIB">IIB</option>
+			                        <option value="IIIA">IIIA</option>
+			                        <option value="IIIB">IIIB</option>
+			                        <option value="Others">Others</option>
+
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6 mt-2" style="text-align:left;">
+							<label for="select"><font color="red" >*</font><b>Fees Template</b></label>
+							<select name="feestemplate" required class="form-select">
+								<option>Select Fees Type</option>
+								{%for th in templatehead  %}
+								<option>{{th.head}}</option>
+								{%endfor%}
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6 mt-2" style="text-align:left;">
+							<label for="fees"><font color="red" >*</font><b>Fees</b></label>
+							<input type="number" pattern="[0-9]{1,10}" name="fees" class="form-control" required placeholder="Enter Fees ">
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<p></p>
+			<center>
+				<div class="col-lg-6 mt-2">
+					<input type="submit" name="txtsubmit" value="Save Fees Template" class="btn btn-success">
+					<input type="reset" name="Cancel" value="Cancel" class="btn btn-warning">
+					
+				</div>
+			</center>
+
+		{% csrf_token %}
+	</form>
+
+	{% include "design/last.html" %}
+</body>
+</html>

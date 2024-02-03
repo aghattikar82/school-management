@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New User</title>
+    {% include 'design/head.html' %}
+    
+</head>
+<body>
+    {% include 'design/adminmid.html' %}
+    <form action="/Profile" enctype="multipart/form-data" id="validate_form" method="post" novalidate=""><input name="__RequestVerificationToken" type="hidden" value="EM9LAZU0xzuo-hGs3r_z_cbUfvAmrgeL6XdbNxIXeNTmNV9rR35-qbQ_7X7QGJQYX_Qm8lc_at0QsyIM-EVSs1uoP7x193YXXVZKeIaM-WI1" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off">    <h3 class="mt-4 mb-4">Profile</h3>
+    <p class="text-danger"></p>
+    <div class="box">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="Code">Institution Code</label>
+                        <input type="text" name="Code" id="Code" placeholder="" required="" autofocus="" maxlength="4" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" value="0021" autocomplete="off" fdprocessedid="gufy1">
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label for="Trust">Name of Trust / Society</label>
+                        <input type="text" name="Trust" id="Trust" placeholder="" required="" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" value="Name of the Trust / Society" autocomplete="off" fdprocessedid="8n8ix9">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="Name">Institution Name</label>
+                        <input type="text" name="Name" id="Name" placeholder="" required="" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" value="N.V Sri Ramachandrappa Raghoji Memorial Primary School" autocomplete="off" fdprocessedid="z2detr">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="Address">Complete Address</label>
+                        <textarea name="Address" id="Address" placeholder="Complete Address" required="" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control">Near Sangameshwara colony</textarea>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="Phone">Phone / Mobile No.</label>
+                        <input type="text" name="Phone" id="Phone" placeholder="" required="" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" value="9886674224" autocomplete="off" fdprocessedid="r409o">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="CashOB">Cash Opening Balance</label>
+                        <input type="text" name="CashOB" id="CashOB" placeholder="" required="" data-parsley-type="number" data-parsley-error-message="Valid amount required." data-parsley-trigger="keyup" class="form-control" value="0.0000" autocomplete="off" fdprocessedid="oz9x0m">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="FileName">Choose Logo (.jpg)</label>
+                        <input type="file" name="FileName" id="FileName" placeholder="" data-parsley-error-message="Document required." data-parsley-trigger="keyup" class="form-control-file form-control-sm" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="AYear">Current Academic Year</label>
+                    <select name="AYear" id="AYear" required="" class="form-control select2-hidden-accessible" data-select2-id="AYear" tabindex="-1" aria-hidden="true">
+                        <option value="2023-24" data-select2-id="2">2023-24</option><option value="2022-23">2022-23</option><option value="2021-22">2021-22</option><option value="2020-21">2020-21</option><option value="2019-20">2019-20</option><option value="2018-19">2018-19</option><option value="2017-18">2017-18</option>
+                    </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="1" style="width: 329px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-AYear-container"><span class="select2-selection__rendered" id="select2-AYear-container" role="textbox" aria-readonly="true" title="2023-24">2023-24</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group text-right">
+            <input type="submit" id="submit" name="submit" value="Update Profile" class="btn btn-success" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off" fdprocessedid="5v0is">
+            <a href="/" class="btn btn-danger">Go Back</a>
+        </div>
+    </div>
+</form>
+    {% include 'design/last.html' %}
+</body>
+</html>

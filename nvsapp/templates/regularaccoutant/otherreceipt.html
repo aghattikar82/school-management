@@ -1,0 +1,97 @@
+<!DOCTYPE html><html>
+<head>
+  <title>Search Student Data</title>
+    {% include "acc_temp/head.html" %}
+    
+
+</head>
+<body>
+{% include "acc_temp/accountantmid.html" %}
+ 
+ <form action="/OtherReceipt/Create" id="validate_form" method="post" novalidate=""><input name="__RequestVerificationToken" type="hidden" value="QZ0q9RILSLfSCCLfq5Kn2FSatpwV7J6NAZvpVjgf9l1pDWUCk4P80uETCk-HNNb_Rf-UDaQ1Cu4DSdCw6kXU47Q967DIzJYa4lVkhdw2Z4w1" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off">    <h3 class="mt-4 mb-4">New Other Receipt</h3>
+    <p class="text-danger"></p>
+    <div class="box">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="AYear">Academic Year</label>
+                    <select name="AYear" id="AYear" required="" class="form-control select2-hidden-accessible" data-select2-id="AYear" tabindex="-1" aria-hidden="true">
+                        <option value="2023-24" data-select2-id="2">2023-24</option><option value="2022-23">2022-23</option><option value="2021-22">2021-22</option><option value="2020-21">2020-21</option><option value="2019-20">2019-20</option><option value="2018-19">2018-19</option><option value="2017-18">2017-18</option>
+                    </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="1" style="width: 339px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-AYear-container"><span class="select2-selection__rendered" id="select2-AYear-container" role="textbox" aria-readonly="true" title="2023-24">2023-24</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="RDate">Receipt Date</label>
+                    <input type="text" name="RDate" id="RDate" placeholder="" required="" data-parsley-type="date" data-type="dateIso" data-parsley-error-message="Valid date required." data-parsley-trigger="keyup" class="form-control" value="22-05-2023" autocomplete="off" fdprocessedid="gc6vd">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="ClassName">Choose Class</label>
+                    <select name="ClassName" id="ClassName" required="" class="form-control select2-hidden-accessible" data-select2-id="ClassName" tabindex="-1" aria-hidden="true">
+                        <option value="MNT" data-select2-id="4">MNT</option><option value="LKG">LKG</option><option value="UKG">UKG</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="Alumni">Alumni</option>;
+                    </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="3" style="width: 339px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ClassName-container"><span class="select2-selection__rendered" id="select2-ClassName-container" role="textbox" aria-readonly="true" title="MNT">MNT</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="StudentId">Choose Student</label>
+                    <select name="StudentId" id="StudentId" required="" class="form-control select2-hidden-accessible" data-select2-id="StudentId" tabindex="-1" aria-hidden="true">
+        <option value="" data-select2-id="10">(Choose Student)</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="5" style="width: 708px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-StudentId-container"><span class="select2-selection__rendered" id="select2-StudentId-container" role="textbox" aria-readonly="true" title="(Choose Student)">(Choose Student)</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="RType">Choose Receipt Type</label>
+                    <select name="RType" id="RType" required="" class="form-control select2-hidden-accessible" data-select2-id="RType" tabindex="-1" aria-hidden="true">
+                        <option value="1" data-select2-id="7">Cash</option>
+                        <option value="2">Bank</option>
+                    </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="6" style="width: 339px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-RType-container"><span class="select2-selection__rendered" id="select2-RType-container" role="textbox" aria-readonly="true" title="Cash">Cash</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="TemplateId">Choose Fee Template</label>
+                    <select name="TemplateId" id="TemplateId" required="" class="form-control select2-hidden-accessible" data-select2-id="TemplateId" tabindex="-1" aria-hidden="true">
+        <option value="" data-select2-id="9">(Choose from the List)</option>
+</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="8" style="width: 708px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-TemplateId-container"><span class="select2-selection__rendered" id="select2-TemplateId-container" role="textbox" aria-readonly="true" title="(Choose from the List)">(Choose from the List)</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="Amount">Amount Paid</label>
+                    <input type="text" name="Amount" id="Amount" placeholder="" required="" data-parsley-type="number" data-parsley-error-message="Valid amount required." data-parsley-trigger="keyup" class="form-control" value="" autocomplete="off" fdprocessedid="004ld7">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div id="ItemDetails"></div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="Details">Payment Details</label>
+                    <input type="text" name="Details" id="Details" placeholder="" required="" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" value="" autocomplete="off" fdprocessedid="aczurc">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="Remarks">Remarks</label>
+                    <input type="text" name="Remarks" id="Remarks" placeholder="" readonly="readonly" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" value="" autocomplete="off" fdprocessedid="vlx7nq">
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="form-group text-right">
+            <input type="submit" id="submit" name="submit" value="Save Receipt" class="btn btn-success" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off" fdprocessedid="opbkov">
+            <a href="/OtherReceipt" class="btn btn-danger">Go Back</a>
+        </div>
+    </div>
+</form>
+
+    {% include "acc_temp/last.html" %}
+
+</body>
+</html>

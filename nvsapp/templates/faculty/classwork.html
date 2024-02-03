@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %} 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Class Work</title>
+</head>
+<body>
+ {% include "design/facultymid.html" %}
+    <h3>New Classwork</h3>
+
+<form  method="post" autocomplete="off"> 
+    <p class="text-danger"></p>
+    <div class="box">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="WDate"> <b>Class conducted Date</label></b>
+                    <input type="text" name="WDate" id="WDate"  class="form-control" required="" value={{academicyear}}>
+                </div>
+            </div>            
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="className"><b>Class Section</label></b>
+                    <select class="form-select " name="className" id="className" autofocus="on"  >
+                        <option value="">Select Class</option>
+                         {% for i in classdata %}
+                            <option value="{{i.subject_id}}_{{i.Addclass_id}}_{{i.section_id}}">{{i.Addclass}} {{i.section}} {{i.subject}} </option>
+                              {%endfor%}
+                    </select>
+                </div>
+            </div>
+
+          <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="WorkData"><b>Work Details</label></b>
+                    <textarea name="WorkDetails" id="WorkDetails" rows="10" placeholder="Work Details" required="" data-parsley-error-message="Valid data required." data-parsley-trigger="keyup" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group text-center" >
+            <input type="submit" id="submit" name="submit" value="Save Classwork" class="btn btn-success">
+                <input type="reset" name="btncancel" value="Cancel" class="btn btn-warning">
+        </div>
+    </div>
+    {% csrf_token %}
+</form>
+
+ {% include "design/last.html" %}
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+  <!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Subject Staff Class Mapping Display</title>
+	
+
+
+      
+	</script>
+
+
+</head>
+<body>
+  {% include "design/operatormid.html" %}
+  <h2>Subject Staff Class Mapping Details </h2>
+  <form autocomplete="off" name="searchrecord" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">
+  <span class="col-3">
+			<select name="ddlfield" required class="form-select">
+				<option value="">Select Institute</option>
+				{% for i in institutedata %}
+				<option value="{{i.id}}">{{i.institutename}}</option>
+				{% endfor %}
+		</select>
+		</span>
+		<span class="col-3">
+			<select name="cname" required class="form-select">
+				<option value="">Select Class</option>
+				{% for i in  classdata %}
+				<option value="{{i.id}}">{{i.className}}</option>
+				{% endfor %}
+			</select>
+
+		</span>
+		<span class="col-3">
+			<select name="sname" required class="form-select">
+				<option value="">Select Section</option>
+				{% for i in  sectiondata %}
+				<option value="{{i.id}}">{{i.sectionName}}</option>
+				{% endfor %}
+			</select>
+		</span>
+		<input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">			
+		
+		
+	</div>
+</div>
+{% csrf_token %}
+</form>
+</body>
+<table class="table table-bordered">
+	<tr>
+
+		<td><b>Subject Name</b></td>
+		<td><b>Staff Name</b></td>
+		<td><b>Class Section</b></td>
+		
+	</tr>
+
+ {% for d in data %}
+
+	<tr>		<td>{{d.subject}}</td>
+		<td>{{d.staffid}}</td>
+		<td>{{d.Addclass}} {{d.section}}</td>
+	
+		<td>
+			<form name="searchrecord" method="POST">
+				<input type="hidden" name="substaffmaptid" value="{{d.id}}">
+			<!--	<input type="submit" name="btnsubmit" value="Edit" class="btn btn-info"> -->
+				<input type="submit" name="btnsubmit" value="Delete" class="btn btn-danger">
+			{% csrf_token %}
+			</form>
+		</td>
+
+		
+
+	</tr>
+
+
+
+ {% endfor %}
+</table>
+
+
+{% include "design/last.html" %}
+
+
+
+</html> 

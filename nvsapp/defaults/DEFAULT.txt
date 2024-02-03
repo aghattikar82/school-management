@@ -1,0 +1,40 @@
+insert into nvsapp_mstdesignation values(1000,"Super Administrator","17-07-2023",1000,0,"superadminhome");
+
+insert into nvsapp_mstdesignation values(100,"Administrator","17-07-2023",1000,0,"adminhome");
+
+insert into nvsapp_mstdesignation values(1,"President","17-07-2023",1000,0,"managementhome");
+insert into nvsapp_mstdesignation values(2,"Vice President","17-07-2023",1000,0,"managementhome");
+insert into nvsapp_mstdesignation values(3,"Secretary","17-07-2023",1000,0,"managementhome");
+insert into nvsapp_mstdesignation values(4,"Joint Secretary","17-07-2023",1000,0,"managementhome");
+insert into nvsapp_mstdesignation values(5,"Treasurer","17-07-2023",1000,0,"managementhome");
+insert into nvsapp_mstdesignation values(6,"Executive Member","17-07-2023",1000,0,"memberhome");
+insert into nvsapp_mstdesignation values(7,"Principal","17-07-2023",1000,0,"principalhome");
+insert into nvsapp_mstdesignation values(8,"Cashier","17-07-2023",1000,0,"cashierhome");
+insert into nvsapp_mstdesignation values(9,"Operator","17-07-2023",1000,0,"operatorhome");
+insert into nvsapp_mstdesignation values(10,"Faculty","17-07-2023",1000,0,"facultyhome");
+insert into nvsapp_mstdesignation values(11,"Accountant","17-07-2023",1000,0,"accountanthome");
+insert into nvsapp_mstdesignation values(12,"Librarian","17-07-2023",1000,0,"librarianhome");
+
+
+
+INSERT IGNORE INTO `nvsapp_userregister`
+(`id`, `name`, `emailid`, `designation_id`, `password`, `softdelete`, `createdon`, `createdby`, `upadated`, `updatedby`, `deletedon`, `deletedby`, `instituteid_id`, `mobilenumber`) 
+VALUES
+(1, 'Administrator', 'admin@epatshala.in', 100, '9876543210', 0, '16-06-2023', 'SUPERADMIN', '00-00-0000', '', '00-00-0000', '', 1, '9876543210'), 
+(2, 'Shivukumar', 'sachin@gmail.com', 9, '6364603717', 0, '00-00-0000', '1', '00-00-0000', '', '00-00-0000', '', 1, '6364603717'), 
+(3, 'Rahul Rathod', 'rahulrathod@gmail.com', 10, '7022388219', 0, '00-00-0000', '1', '00-00-0000', '', '00-00-0000', '', 1, '7022388219'), 
+(4, 'Anup G', 'anupg@gmail.com', 11, '8722202312', 0, '00-00-0000', '1', '00-00-0000', '', '00-00-0000', '', 1, '8722202312'), 
+(5, 'Vivek', 'vivek@gmail.com', 10, '9845356246', 0, '00-00-0000', '', '00-00-0000', '', '00-00-0000', '', 1, '9845356246'), 
+(6, 'Sandhya', 'sandhyadigamber@gmail.com', 7, '9632029756', 0, '00-00-0000', '1', '00-00-0000', '', '00-00-0000', '', 1, '9632029756'), 
+(7, 'Sachin', 'sachinmbhg@gmail.com', 10, '9886140412', 0, '00-00-0000', '', '00-00-0000', '', '00-00-0000', '', 1, '9886140412'), 
+(8, 'Ashiq', 'ashiq@gmail.com', 10, '9901694944', 0, '00-00-0000', '1', '00-00-0000', '', '00-00-0000', '', 1, '9901694944'), 
+(9, 'Cashier', 'cashier@gmail.com', 8, '9845356247', 0, '00-00-0000', '1', '00-00-0000', '', '00-00-0000', '', 1, '9845356247'), 
+(10, 'Shivkumar', 'shivu@gmail.com', 101, '9845356248', 0, '00-00-0000', '1', '00-00-0000', '', '00-00-0000', '', 1, '9845356248'),
+(10, 'Shivkumar', 'shivu@gmail.com', 11, '9845356248', 0, '00-00-0000', '1', '00-00-0000', '', '00-00-0000', '', 1, '9845356248');
+
+
+insert into nvsapp_institutionprofile values
+(null,"NUTAN VIDHYALAYA SOCIETY","NUTAN VIDHYALAYA BOYS HIGH SCHOOL","NVBHS","S B TEMPLE ROAD-KALABURAGI","9999999999",
+"0.00","NVS.PNG","2023",0,"14-09-2023",'SELF','','','','');
+
+insert into nvsapp_academicmaster values(null,"2023",1,0,"14-09-2023",1,"","","","",1);

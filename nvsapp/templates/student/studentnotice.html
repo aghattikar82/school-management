@@ -1,0 +1,32 @@
+
+{%load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Notice Circular </title>
+	{% include "design/head.html" %}
+</head>
+<body>
+	{% include 'design/studentmid.html' %}
+	<form name="noticecircular" method="POST" enctype="multipart/form-data">
+	<h2>Circulars</h2>
+		{% for d in NoticeCirculardata %}
+			<div class="container-fluid mt-3" >
+				<div class="row" >
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+					<div class="col-lg-6 col-md-12 col-sm-12"><b>subject : </b> {{d.subject}}</div>
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+					<div class="col-lg-6 col-md-12 col-sm-12"><b>Matter : </b> {{d.matter}}</div>
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+					<div class="col-lg-6 col-md-12 col-sm-12"><a href="{{d.image}}" download>download pdf</a> </div>
+				</div>
+			</div><br>
+			<hr>
+		{% endfor %}
+			{% csrf_token %} 
+	</form>
+	{% include 'design/last.html' %}
+</body>
+</html>

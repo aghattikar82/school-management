@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+		{% include "design/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	<title>User Display</title>
+</head>
+<body>
+	  {% include "design/adminmid.html" %}
+
+<h2> Users Display </h2>
+	<form autocomplete="off" name="searchrecord" method="POST"   >
+ <div class="container-fluid mt-3" >
+
+  <div class="input-group mb-3" align="center">									
+  								
+  										
+								    	<span class="col-lg-2 col-md-2 col-sm-2"></span>
+												<span class="col-lg-8 col-md-8 col-sm-8" >
+													<select name="designationid" class="form-select">
+														<option value="0">Select designation </option>
+														{% for d in designationdata %}
+														<option value="{{d.id}}"> {{d.designationname}} </option>
+														{% endfor %}	
+													</select>
+												</span>
+										
+											<span>
+											<input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">			
+											</span>
+
+	</div>
+</div>
+{% csrf_token %}
+
+</form>
+
+
+
+{% if data %}
+<div class="container mt-3">
+  <table  class="table table-hover">
+    <thead>
+        <tr >
+			
+			<th>Name </th>
+			<th>Mobile Number</th>
+			<th>Email ID</th>
+			<th>Designation</th>
+			<th>Password </th>
+		</tr>
+    </thead>
+{% for d in data.object_list %}
+    <tbody>
+ 
+      <tr >
+        <td>{{d.id}}</td>
+        <td>{{d.name}}</td>
+        <td>{{d.mobilenumber}}</td>
+        <td>{{d.emailid}}</td>
+        <td>{{d.designation}} </td>
+        <td>{{d.password}}</td>
+      </tr>
+   {% endfor %}
+    </tbody>
+</table>
+</div>
+   
+  {%endif%}
+
+  <table align="center">
+  <tr>
+    <td>
+  <div class="input-group">
+
+     {%if data.has_previous %} 
+       <form name="frm" method="post">
+
+         <input type="submit" name="btnsubmit" value="<" style="font-size:10px;" class="btn btn-primary">  
+       <input type="hidden" name="page" value="{{data.previous_page_number}}" >   
+         <input type="hidden" name="instituteid" value="{{instituteid}}"> 
+         <input type="hidden" name="designationid" value="{{designationid}}"> 
+        
+          {% csrf_token %}
+          </form>  
+        {% endif %}
+
+        &emsp;
+        <span>{{data.number}}</span> 
+        &emsp;
+        {%if data.has_next %} 
+       <form name="frm" method="post">
+
+         <input type="submit" name="btnsubmit" value=">"  style="font-size:10px;" class="btn btn-primary">  
+         <input type="hidden" name="page" value="{{data.next_page_number}}">      
+        <input type="hidden" name="instituteid" value="{{instituteid}}">
+        <input type="hidden" name="designationid" value="{{designationid}}">
+
+      
+          {% csrf_token %}
+          </form>  
+        {% endif %}
+  </div>
+  </td>
+  </tr>
+</table>
+
+{% include "design/last.html" %}
+</body>
+
+</html>

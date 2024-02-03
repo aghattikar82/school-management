@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Staff Leaves</title>
+	{% include "design/head.html" %}
+</head>
+<body>
+	
+{% include "design/adminmid.html" %}
+<form name="frmdisplay" method="POST" >
+	{% for d in data %}
+ <div class="container mt-3"  >
+  <div id="accordion">
+    <div class="card">
+    	<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse{{d.id}}">
+     
+      <div class="card-header">
+         <b>&nbsp; Subject: </b>{{d.subject}}&nbsp;&nbsp; <b>Leave Date: </b>{{d.leavedate}}
+      </div>
+       </a>
+  <div id="printableArea" >
+      <div id="collapse{{d.id}}" class="collapse" data-bs-parent="#accordion">
+        <div class="card-body">
+         
+         <table align="center" class="table table-bordered">
+         	<tr >
+         		<td ><b>Reason For leave:</b></td>
+         		<td ><b>End Date </b>  </td>
+				
+				
+         	</tr>
+         	<tr >
+         		<td>{{d.text}}</td>
+         		<td>{{d.end_date}}</td>
+         	</tr>
+         
+         	
+        
+         </table>
+
+
+        </div>
+        <center>
+ 		<form name="frmaprrove" method="post">
+					<input type="submit" name="btnsubmit" value="Approve" class="btn btn-success">
+					<input type="submit" name="btnsubmit" value="Reject" class="btn btn-danger">
+					
+				</form></center>    
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+</div>
+ {% endfor %}
+
+
+
+
+</form>
+
+{% include "design/last.html" %}
+</body>
+</html>

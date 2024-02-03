@@ -1,0 +1,68 @@
+  <!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fees Record</title>
+</head>
+<body>
+  {% include "design/cashiermid.html" %} 
+<h3>Fees Details</h3>
+
+{% if data %}
+</body>
+ {% for d in data %}
+
+<table class="table mt-3">
+  <tr><td><img static src="{{d.studentphoto}}" alt="Student Image"  height="100px" width="100px" ></td></tr>
+  <tr>
+    <td><b>Student ID: </b>{{d.id}}</td>
+    <td><b>Student Name: </b>{{d.studentname}} {{d.surname}}</td>
+    <td><b>Class: </b>{{d.chooseclass}} {{d.section}} Section</td>
+  </tr>
+
+  <tr>
+    <td><b>Category: </b>{{d.category}}</td>
+    <td><b>Mobile Number: </b>{{d.mobileno}}</td>
+    <td><b>Address: </b> {{d.address}}</td>
+  </tr>
+  <tr>
+    <td><b>Annual Fees: </b>Rs. {{totalfees}}.0</td>
+    <td><b><font color="green">Total Paid: Rs. {{amountpaid}}.0</font></b></td>
+    <td><b><font color="red">Balance Fees: Rs. {{balanceamount}}</font></b></td>
+  </tr>
+  <tr>
+    <td><b>Transportation : </b>{{d.busfacility}}</td>
+    <td><b>Hostel hostelfacility : </b>{{d.hostelfacility}}</td>
+    <td><b>Discount Amount: </b>{{discountamt}} </td>
+  </tr>
+
+</table>
+<table class="table">
+  <tr>
+    <th>Receipt Id</th>
+    <th>Paid on</th>
+    <th>Amount Paid</th>
+    <th>Payment Mode</th>
+    <th>Transcation Details</th>
+
+  </tr>
+{%for sfd in studentfeesdetails%}
+  <tr>
+    <td>{{sfd.id}}</td>
+    <td>{{sfd.createdon}}</td>
+    <td>{{sfd.amountpaid}}</td>
+    <td>{{sfd.ddlpaymentmode}}</td>
+    <td>{{sfd.transactiondetials}}</td>
+
+  </tr>
+
+{%endfor%}
+</table>
+ {% endfor %}
+ {% endif %}
+
+{% include "design/last.html" %}
+
+</html>

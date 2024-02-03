@@ -1,0 +1,72 @@
+  <!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fees Report</title>
+</head>
+<body>
+    {% include "design/accountantmid.html" %}    
+<h3>Fees Report Institute Wise</h3>
+<form autocomplete="off" name="frmfeedetails" method="POST"  >
+ <div class="container-fluid mt-3" >
+  <div class="input-group" align="center">  
+        <span class="col-2">
+            <select name="txtsearch" autofocus="on" required class="form-select">
+                <option  value="">Select Institute</option>
+                            {% for i in institutedata %}        
+                                    <option value="{{i.id}}">{{i.institutename}}</option>
+                            {% endfor %}
+                            </select>
+        </span> 
+    <input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">            
+
+{% csrf_token %}
+</form>
+{% if institutefeedata %}
+
+        <div class="container mt-3"  >
+  <div id="accordion">
+
+{% for i in institutedata %}
+
+    <div class="card">
+      <a class="btn btn-info mt-1" data-bs-toggle="collapse"   href="#collapse{{i.id}}">
+      <div class="card-header">
+         <b>&nbsp; Institute ID: </b>{{i.institutecode}}&nbsp;&nbsp; <b>Institute Name: </b>{{i.institutename }}
+      </div>
+       </a>
+  <div id="printableArea" >
+      <div id="collapse{{i.id}}" class="collapse" data-bs-parent="#accordion">
+        <div class="card-body">
+            <table style="width:100%" class="table table-bordered">
+                {% for i in institutefeedata %}
+                <tr>
+                    <td align="center"><b>Class :</b>{{i.classid}}</td>
+                    <td align="center"><b>Total Fees Paid: </b>{{i.dcount}}</td>
+               </tr>
+
+               {% endfor %}
+               <tr>
+                <td></td>
+                <td  align="center"><b>Total Amount Collected</b> {{institutetotalfees}}</td>
+            </tr>
+            </table>
+        </div>   
+      </div>
+
+    </div>
+</div>
+{% endfor %}
+
+</div>
+</div>
+
+{% endif %}
+</div>
+</div>
+</div>
+{% include "design/last.html" %}
+
+</html>

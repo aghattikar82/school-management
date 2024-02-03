@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Edit Class</title>
+	{% include "design/head.html" %}
+</head>
+<body>
+	{% include "design/operatormid.html" %}
+{% for d in data %}	
+	<form name="editclass" method="post">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-6">
+					<label for="name"><font color="red">*</font> Class id </label>
+					<input type="text" name="classid" readonly value="{{d.id}}" class="form-control">
+
+					
+				</div>
+				<div class="col-lg-6">
+					<label for="name"><font color="red">*</font> Class Name</label>
+					<input type="text" name="classname" value="{{d.className}}"class="form-control">
+
+				</div>
+				
+			</div>
+			<div align="center">
+				<input type="submit" name="btnsubmit" value="Update" class="btn btn-success">
+				
+			</div>
+			
+		</div>
+		
+
+{% csrf_token %}
+	</form>
+
+{% endfor %}
+{% include "design/last.html" %}
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+    <title>Print Challan</title>
+
+</head>
+<body>
+    {% include "design/accountantmid.html" %}
+   {%for cd in challandata %}
+    <table class="table" border="2">
+        <tr>
+            <table class="table">
+                <tr>
+                    <td style="width: 25%;">
+                                            <table  class="table"   class="table table-borderless">
+                                                <tr><td><b> Cash Counter Copy </b></td></tr><br>
+                                                <tr><td><b> Reference No:</b>{{cd.id}}</td></tr>
+                                                <tr><td><b> Date:</b>{{cd.createdonind}}</td></tr>
+                                            </table>
+                                        </td>
+
+                                        <td style="width: 50%;">
+                                            <table  align="center" border="1"class="table table-borderless">
+                                                <tr><td><b><h2><center>N.V.Pre-University College</center></h2></b><h6><center>N.V.Complex,Kalaburagi 585103.</center></h6><h6><center>Phone:084207-244360,960132179</center></h6><h4><hr>
+                                                <center>Fee Challan For Payment of admission Fees</center></h4></td></tr>
+                                             </table>
+                                         </td>
+
+                                         <td style="width: 25%;">
+                                            <table align="center" class="table" border="1">
+                                                <h6>&nbsp&nbsp(Cash Collectors Only)</h6>
+                                                <tr><td><b>User Code:</b></td></tr>
+                                                <tr><td><b>Payment No. :</b></td></tr>
+                                                <tr><td><b>Date of Payment:</b></td></tr>
+                                            </table>
+                                        </td>
+                </tr>
+            </table>
+            <table class="table">
+                <td colspan="2" style="width: 50%;">
+                            <table class="table" border="1">
+                                <tr>
+                                    <td><b>Course-Semester:</td><td>{{cd.studentid.chooseclass}}</td>
+                                    <td><b>Section-Roll No.:</td><td>{{cd.studentid.section}}</td>
+                                    <tr><td><b>Name of Student:</td><td colspan="3">{{cd.studentid.studentname}} {{cd.studentid.fathername}} {{cd.studentid.surname}}</td></tr>
+                                    <tr>
+                                        <td><b>Mobile No:</td><td>{{cd.studentid.mobileno}}</td>
+                                        <td><b>Date of Birth:</td><td>{{cd.studentid.dateofbirth}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Student ID:</b></td><td>{{cd.studentid.id}}</td>
+                                        <td><b>Gender:</b></td><td>{{cd.studentid.gender}}</td>
+                                    </tr>
+                                </tr>
+                                
+                            </table>
+                        </td>
+                        <td  style="width: 50%;" >
+                            <table class="table" border="1">
+                                <tr>
+                                    <th>Particulars</th>
+                                    <th>Amount</th>
+                                </tr>
+                                    <tr><td><b>Amount Payable:</b></td><td>{{cd.amounttopay}}</td></tr>
+                                    <tr><td><b>Service Charge:</b></td><td>{{cd.servicefees}}</td></tr>
+                                    <tr><td><b>Total Amount:</b></td><td>{{cd.totalamounttopay}}</td></tr>
+
+                            </table>
+                        </td>
+                    </tr>
+            </table>
+            <table class="table">
+                <tr>
+                      <td style="width: 50%;"><b>Note:</b>Please Visit <b>NV Cash Collection Counter </b> for Payment of this Challan within 4 days from the data of this Receipt.Date & time:</b></td>
+                      <td style="width: 20%;">Sign. of the Applicant</td>
+                      <td style="width: 30%;"><center> Sign. of the Official</center></td>
+                  </tr>
+            </table>
+        </tr>
+        <tr>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</tr>
+        <hr>
+                <tr>
+            <table class="table">
+                <tr>
+                    <td style="width: 25%;">
+                                            <table  class="table"   class="table table-borderless">
+                                                <tr><td><b> Institution Copy </b></td></tr><br>
+                                                <tr><td><b> Reference No:{{cd.id}}</td></tr>
+                                                <tr><td><b> Date:{{cd.createdonind}}</td></tr>
+                                            </table>
+                                        </td>
+
+                                        <td style="width: 50%;">
+                                            <table  align="center" border="1"class="table table-borderless">
+                                                <tr><td><b><h2><center>N.V.Pre-University College</center></h2></b><h6><center>N.V.Complex,Kalaburagi 585103.</center></h6><h6><center>Phone:084207-244360,960132179</center></h6><h4><hr>
+                                                <center>Fee Challan For Payment of admission Fees</center></h4></td></tr>
+                                             </table>
+                                         </td>
+
+                                         <td style="width: 25%;">
+                                            <table align="center" class="table" border="1">
+                                                <h6>&nbsp&nbsp(Cash Collectors Only)</h6>
+                                                <tr><td><b>User Code:</td></tr>
+                                                <tr><td><b>Payment No. :</td></tr>
+                                                <tr><td><b>Date of Payment:</td></tr>
+                                            </table>
+                                        </td>
+                </tr>
+            </table>
+            <table class="table">
+                <td colspan="2" style="width: 50%;">
+                            <table class="table" border="1">
+                                <tr>
+                                    <td><b>Course-Semester:</td><td>{{cd.studentid.chooseclass}}</td>
+                                    <td><b>Section-Roll No. :</td><td>{{cd.studentid.section}}</td>
+                                    <tr><td><b>Name of Student:</td><td colspan="3">{{cd.studentid.studentname}} {{cd.studentid.fathername}} {{cd.studentid.surname}}</td></tr>
+                                    <tr>
+                                        <td><b>Mobile No:</td><td>{{cd.studentid.mobileno}}</td>
+                                        <td><b>Date of Birth:</td><td>{{cd.studentid.dateofbirth}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Student ID:</td><td>{{cd.studentid.id}}</td>
+                                        <td><b>Gender:</td><td>{{cd.studentid.gender}}</td>
+                                    </tr>
+                                </tr>
+                                
+                            </table>
+                        </td>
+                        <td  style="width: 50%;" >
+                            <table class="table" border="1">
+                                <tr>
+                                    <th>Particulars</th>
+                                    <th>Amount</th>
+                                </tr>
+                                    <tr><td><b>Amount Payable:</td><td>{{cd.amounttopay}}</td></tr>
+                                    <tr><td><b>Service Charge:</td><td>{{cd.servicefees}}</td></tr>
+                                    <tr><td><b>Total Amount:</td><td>{{cd.totalamounttopay}}</td></tr>
+
+                            </table>
+                        </td>
+                    </tr>
+            </table>
+            <table class="table">
+                <tr>
+                      <td style="width: 50%;"><b>Note:</b>Please Visit <b>NV Cash Collection Counter </b> for Payment of this Challan within 4 days from the data of this Receipt.Date & time:</b></td>
+                      <td style="width: 20%;">Sign. of the Applicant</td>
+                      <td style="width: 30%;"><center> Sign. of the Official</center></td>
+                  </tr>
+            </table>
+        </tr>
+
+        <tr>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</tr>
+        <hr>
+                <tr>
+            <table class="table">
+                <tr>
+                    <td style="width: 25%;">
+                                            <table  class="table"   class="table table-borderless">
+                                                <tr><td><b> Student Copy </b></td></tr><br>
+                                                <tr><td><b> Reference No:{{cd.id}}</td></tr>
+                                                <tr><td><b> Date:{{cd.createdonind}}</td></tr>
+                                            </table>
+                                        </td>
+
+                                        <td style="width: 50%;">
+                                            <table  align="center" border="1"class="table table-borderless">
+                                                <tr><td><b><h2><center>N.V.Pre-University College</center></h2></b><h6><center>N.V.Complex,Kalaburagi 585103.</center></h6><h6><center>Phone:084207-244360,960132179</center></h6><h4><hr>
+                                                <center>Fee Challan For Payment of admission Fees</center></h4></td></tr>
+                                             </table>
+                                         </td>
+
+                                         <td style="width: 25%;">
+                                            <table align="center" class="table" border="1">
+                                                <h6>&nbsp&nbsp(Cash Collectors Only)</h6>
+                                                <tr><td><b>User Code:</td></tr>
+                                                <tr><td><b>Payment No. :</td></tr>
+                                                <tr><td><b>Date of Payment:</td></tr>
+                                            </table>
+                                        </td>
+                </tr>
+            </table>
+            <table class="table">
+                <td colspan="2" style="width: 50%;">
+                            <table class="table" border="1">
+                                <tr>
+                                    <td><b>Course-Semester:</td><td>{{cd.studentid.chooseclass}}</td>
+                                    <td><b>Section-Roll No.:</td><td>{{cd.studentid.section}}</td>
+                                    <tr><td><b>Name of Student:</td><td colspan="3">{{cd.studentid.studentname}} {{cd.studentid.fathername}} {{cd.studentid.surname}}</td></tr>
+                                    <tr>
+                                        <td><b>Mobile No:</td><td>{{cd.studentid.mobileno}}</td>
+                                        <td><b>Date of Birth:</td><td>{{cd.studentid.dateofbirth}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Student ID:</td><td>{{cd.studentid.id}}</td>
+                                        <td><b>Gender:</td><td>{{cd.studentid.gender}}</td>
+                                    </tr>
+                                </tr>
+                                
+                            </table>
+                        </td>
+                        <td  style="width: 50%;" >
+                            <table class="table" border="1">
+                                <tr>
+                                    <th>Particulars</th>
+                                    <th>Amount</th>
+                                </tr>
+                                    <tr><td><b>Amount Payable:</td><td>{{cd.amounttopay}}</td></tr>
+                                    <tr><td><b>Service Charge:</td><td>{{cd.servicefees}}</td></tr>
+                                    <tr><td><b>Total Amount:</td><td>{{cd.totalamounttopay}}</td></tr>
+
+                            </table>
+                        </td>
+                    </tr>
+            </table>
+
+            <table class="table">
+                <tr>
+                      <td style="width: 50%;"><b>Note:</b>Please Visit <b>NV Cash Collection Counter </b> for Payment of this Challan within 4 days from the data of this Receipt.Date & time:</b></td>
+                      <td style="width: 20%;">Sign. of the Applicant</td>
+                      <td style="width: 30%;"><center> Sign. of the Official</center></td>
+                  </tr>
+            </table>
+        </tr>
+    </table>
+    {%endfor%}
+    <center>
+        <input type="button" class="btn btn-info" name="btnprint" value="Print">
+    </center>
+
+    {% include "design/last.html" %}  
+</body>
+</html>

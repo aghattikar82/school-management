@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+        {% include 'design/head.html' %}
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Caste</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        function getCaste(){
+            alert("am called");
+            religionid=document.getElementById("religion").value;
+        var csrf=$("input[name=csrfmiddlewaretoken]").val();
+            $.ajax({
+                type:"POST",
+                url:"getcaste",
+                data:{
+                    "religionid":religionid,
+                    "csrfmiddlewaretoken":csrf,
+                },
+                            
+                success:function(response)
+                {
+                    $("#castes").empty();
+                    var castelist="<option value=''> Select Caste</option>";
+                    for (var i in response.castes)
+                    {
+                        castelist+="<option value="+response.castes[i].id+">"+response.castes[i].castes+"</option>";
+                    }
+
+                    $("#castes").append(castelist);
+                }
+            });
+        };
+        
+
+    </script>
+</head>
+<body>
+    {% include 'design/operatormid.html' %}
+       <h3 align="left">Sub Caste Master</h3>
+
+ <form  method="post" autocomplete="off"  >
+   
+   <div class="container mt-3">
+        <div class="row">
+
+            <div class="col-lg-3 col-ms-0 col-md-0"></div>
+            <div class="col-lg-6 col-ms-12 col-md-12">
+                <div class="form-group">
+                    <font color="red">*</font><b><label for="">Select Religion</label></b>
+                    <select class="form-select " name="religion"id="religion" autofocus="on" onChange="getCaste()" >
+                        <option value="">Select Religion</option>
+                         {%for d in data %}
+                        <option value="{{d.id}}"> {{d.religion}} </option>
+                          {%endfor%}                        
+                    </select>
+                </div>
+            </div>
+        </div>
+           
+        <div class="row">
+            <div class="col-lg-3 col-ms-0 col-md-0"></div>
+      
+            <div class="col-lg-6 col-ms-12 col-md-12">
+                  <font color="red">*</font><b><label for="castes">Caste</label></b>
+<select id='castes' name='castes' required class='form-select' >
+    <option value=''> Select Caste</option>
+</select>
+            </div>
+            </div>    
+<div class="row">
+            <div class="col-lg-3 col-ms-0 col-md-0"></div>
+
+            <div class="col-lg-6 col-ms-12 col-md-12">
+                <div class="form-group">
+                    <font color="red">*</font><b><label for="">Select category</label></b>
+                    <select class="form-select " name="textcategory"id="textcategory">
+                        <option value="">Select category</option>
+                        <option>NA</option>
+                        <option>SC</option>
+                        <option>ST</option>
+                        <option>Category-1</option>
+                        <option>2A</option>
+                        <option>2B</option>
+                        <option>3A</option>
+                        <option>3B</option>
+                                              
+                    </select>
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col-lg-3 col-ms-0 col-md-0"></div>
+       
+            <div class="col-lg-6 col-ms-12 col-md-12">
+                <div class="form-group">
+                  <font color="red">*</font><b><label for="subcaste">Sub Caste</label></b>
+                    <input type="text" name="subcaste" id="subcaste" placeholder="" class="form-control"  >
+                </div>
+            </div>  
+        </div>
+           <p></p>
+
+        <div class="form-group text-center">
+            <input type="submit"  name="submit" value="Submit Subcaste" class="btn btn-success">
+            <input type="reset" name="btncancel" value="Cancel" class="btn btn-warning">
+        </div>
+         {% csrf_token %}
+    </div>
+</form>
+</div>
+
+    {% include 'design/last.html' %}
+
+</body>
+</html>

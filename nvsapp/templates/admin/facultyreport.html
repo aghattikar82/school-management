@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faculty Report</title>
+  
+</head>
+<body>
+  {% include "design/adminmid.html" %}  
+
+  <h2>Faculty Report</h2>
+  
+<form autocomplete="off" name="frmfacultyreport" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">
+
+      <span class="col-3" >
+        
+        <select class="form-select" required autofocus="on" name="txtinstitutename">
+          <option value="">Select Institute Name</option>
+         {% for d in  institutedata %}
+          <option value="{{d.id}}">{{d.institutename}}</option>
+        {% endfor %}  
+        </select>
+        
+      </span>     
+    
+    
+    <span class="col-3">
+      <select required  name="ddlfield" class="form-select">
+        <option value="">Search By </option>
+        <option value="facultyid">Faculty Id</option>
+        <option value="facultyname">Faculty Name</option>
+        <option value="facultymobilenumber">Faculty Mobile Number</option>
+        
+      </select>
+
+    </span>
+    <span class="col-5">
+      
+      <input type="text" name="txtsearch" placeholder="Enter Faculty Id /Faculty Name/Faculty Mobile Number" required class="form-control">
+    </span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">     
+    
+
+  </div>
+          <span class="col-2" >
+      </span>     
+
+</div>
+
+{% csrf_token %}
+</form>
+</body>
+
+ {% for d in data %}
+ <div class="container mt-3"  >
+  <div id="accordion">
+    <div class="card">
+      <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse{{d.id}}">
+     
+      <div class="card-header">
+        <table width="100%">
+          <tr>
+            <td><b>User ID: </b>{{d.id}}</td>
+            <td><b>User Name: </b>{{d.name}}</td>
+          </tr>
+        </table>
+      </div>
+       </a>
+  <div id="printableArea" >
+      <div id="collapse{{d.id}}" class="collapse" data-bs-parent="#accordion">
+        <div class="card-body">
+         
+         <table align="center" class="table table-bordered">
+          <tr >
+            <td ><b> User Name:</b>  </td>
+        <td>{{d.name}}</td>
+          </tr>
+          <tr >
+            <td ><b> Email Id:</b>  </td>
+        <td>{{d.emailid}}</td>
+          </tr>
+          <tr >
+            <td ><b>Mobile Number:</b>  </td>
+        <td>{{d.mobilenumber}}</td>
+          </tr>
+          <tr >
+            <td ><b>Designation:</b>  </td>
+        <td>{{d.designation}}</td>
+          </tr>
+          
+        
+         </table>
+
+
+        </div>
+      <center>
+        <form method="post" name="txtsearch">
+          <input type="hidden" name="facultyid" value="{{d.id}}">
+          <input type="hidden" name="txtinstituteid" value="{{d.institutionid}}">
+          <input type="submit" name="btnsubmit" value="Delete" class="btn btn-danger">
+          <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-info" />       
+    {% csrf_token %}
+        </form>
+       
+    </center>    
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+</div>
+ {% endfor %}
+</div>
+
+{% include "design/last.html" %}
+
+</html>

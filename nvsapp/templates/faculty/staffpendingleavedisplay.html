@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pending Leaves</title>
+	{% include "design/head.html" %}
+</head>
+<body>
+	
+{% include "design/facultymid.html" %}
+<form name="frmdisplay" method="POST" >
+<h2>New Leaves</h2>
+	{% for d in leavedata %}
+ <div class="container mt-3"  >
+  <div id="accordion">
+    <div class="card">
+    	<a class="btn btn-info" data-bs-toggle="collapse" href="#collapse{{d.id}}">
+     
+      <div class="card-header">
+        <table style="width:80%">
+
+        <td> <b> Staff Name: </b>{{d.createdby}}</td><td>  <b>Leave Date: </b>{{d.leavedate}}</td>
+         </table>
+      </div>
+       </a>
+  <div id="printableArea" >
+      <div id="collapse{{d.id}}" class="collapse" data-bs-parent="#accordion">
+        <div class="card-body">
+         
+      <table align="center" class="table">
+
+          <tr >
+              <td><b>Leave Applied By:</b></td><td >
+             <input type="text" name="txtleavedate" readonly class="form-control" value="{{d.createdby}}"> </td>
+          </tr>
+           <tr >
+              <td><b>Leave Applied Date:</b></td><td >
+             <input type="text" name="txtleavedate" readonly class="form-control" value="{{d.createdon}}"> </td>
+          </tr>
+        
+         	<tr >
+              <td><b>Leave date :</b></td><td >
+             <input type="text" name="txtleavedate" readonly class="form-control" value="{{d.leavedate}}"> </td>
+          </tr>
+          <tr>
+            <td><b>Subject:</b></td> <td>
+            <input type="text" name="txtsubject" readonly value="{{d.subject}}" class="form-control" > </td>
+         	</tr>
+          <tr >
+            <td><b>Matter:</b></td>
+       
+            <td> <pre>{{d.text}}</pre> </td>
+       
+          </tr>
+          <tr>
+            <td><b>Leave End Date</b></td><td>
+            <input type="text" name="txtenddate" readonly class="form-control" value=" {{d.end_date}}"></td>
+          </tr>
+         
+      </table>
+
+
+        </div>
+        <center>
+ 		<form name="frmaprrove" method="post">
+          <input type="hidden" name="leaveid" value="{{d.id}}"> 
+					<input type="submit" name="btnsubmit" value="Cancel" class="btn btn-danger">
+				{% csrf_token %}	
+		</form></center>    
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+</div>
+ {% endfor %}
+
+
+
+
+</form>
+
+{% include "design/last.html" %}
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Leaves</title>
+  {% include "design/head.html" %}
+</head>
+<body>
+  
+{% include "design/studentmid.html" %}
+<form name="frmdisplay" method="POST" >
+  <h2>Rejected Leaves</h2>
+  {% for d in leavedata %}
+ <div class="container mt-3"  >
+  <div id="accordion">
+    <div class="card">
+      <a class="btn btn-info" data-bs-toggle="collapse" href="#collapse{{d.id}}">
+     
+      <div class="card-header" >
+         <div>{{d.createdby.studentname}}| {{d.createdby.chooseclass}} {{d.createdby.section}}|{{d.createdon}}
+          </div>
+      </div>
+       </a>
+  <div id="printableArea" >
+      <div id="collapse{{d.id}}" class="collapse" data-bs-parent="#accordion">
+        <div class="card-body">
+
+ <table align="center" class="table">
+   <tr >
+              <td><b>Leave Date:</b><input type="text" name="txtleavedate" readonly class="form-control" value="{{d.leavedate}}"> </td>
+          </tr>
+        
+
+       <tr>
+            <td><b>Subject:</b><input type="text" name="txtsubject" readonly value="{{d.subject}}" class="form-control" > </td>
+          </tr>
+          <tr >
+            <td><b>Matter:</b><textarea name="txtmattet" cols="8" readonly rows="10" class="form-control">{{d.text}}</textarea> </td>
+       
+          </tr>
+          <tr>
+            <td><b>Leave End Date</b><input type="text" name="txtenddate" readonly class="form-control" value=" {{d.end_date}}"></td>
+          </tr>
+           <tr>
+            <td><b>Leave  Status:</b><input type="text" name="txtsubject" readonly value="{{d.leavestatus}}" class="form-control" > </td>
+          </tr>  
+
+      </table>
+       <center>
+      <b> LEAVE &nbsp;{{d.leavestatus}}  </b>   
+      </center>
+
+
+          </div>
+        </div>
+
+
+        </div>
+    
+      </div>
+
+    </div>
+{% csrf_token %}
+
+  </div>
+  {% endfor %}
+</div>
+
+</form>
+
+{% include "design/last.html" %}
+</body>
+</html>

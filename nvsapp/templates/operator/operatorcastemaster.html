@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+        {% include 'design/head.html' %}
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Caste</title>
+</head>
+<body>
+    {% include 'design/operatormid.html' %}
+       <h2 align="left">Caste Master </h2>   
+
+ <form  method="post"  autocomplete="off" >
+    <div class="container mt-3">
+
+           <div class="row">
+                <div class="col-lg-3 col-ms-0 col-md-0"></div>
+                    <div class="col-lg-6 col-ms-12 col-md-12">
+                        <font color="red">*</font><b><label for="">Select Religion</label></b>
+                            <select class="form-select " name="religion">
+                                <option value="">Select Religion</option>
+                                 {%for d in data %}
+                                <option value="{{d.id}}"> {{d.religion}} </option>
+                                  {%endfor%}                        
+                            </select>
+                    </div>
+                </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-ms-0 col-md-0"></div>
+                    <div class="col-lg-6 col-ms-12 col-md-12">
+                        <font color="red">*</font><b><label >Caste</label></b>
+                        <input type="text"  name="textcaste" id="textcaste" placeholder="Enter Caste Name" class="form-control"  >
+                    </div>
+                </div>
+            </div>
+     
+           <p></p>
+
+        <div class="form-group text-center">
+            <input type="submit"  name="submit" value="Submit Caste " class="btn btn-success">
+            <input type="reset" name="btncancel" value="Cancel" class="btn btn-warning">
+        </div>
+         {% csrf_token %}
+
+</form>
+</div>
+</div>
+    {% include 'design/last.html' %}
+
+</body>
+</html>

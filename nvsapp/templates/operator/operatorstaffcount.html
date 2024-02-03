@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Staff Details</title>
+	{% include 'design/head.html' %}
+</head>
+<body>
+	{% include 'design/operatormid.html' %}
+	<table class="table">
+		<tr>
+			<td>Student Name</td>
+			<td>Mobile Number</td>
+			<td>Email ID</td>
+			<td>Designation</td>
+			<td>Registered Date</td>
+		</tr>
+		{% if staffdata %}
+			{{staffdata}}
+		{%endif%}
+	{% for sd in staffdata %}
+		<tr>
+			<td>{{sd.id.name}}</td>
+			<td>{{sd.id.mobilenumber}}</td>
+			<td>{{sd.id.emailid}}</td>
+			<td>{{sd.id.designation}}</td>
+			<td>{{sd.id.createdon}}</td>
+		</tr>
+	{%endfor%}	
+	</table>
+
+	<center>
+	<form name="frm" method="post">
+			<input type="hidden" name="txtmin" value="{{min}}">
+			<input type="hidden" name="txtmax" value="{{max}}">
+			<input type="submit" name="btnnext" value="Next 10 Record" class="btn btn-success">
+{% csrf_token %}
+	</form>
+	</center>
+
+	{% include 'design/last.html' %}
+
+</body>
+</html>

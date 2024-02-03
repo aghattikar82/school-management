@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        {% include 'design/head.html' %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <title>Assesments Marks Display</title>
+    <script type="text/javascript">
+         function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+    </script> 
+
+
+
+
+</head>
+<body>
+        {% include 'design/facultymid.html' %}
+
+<div class="form-control">  
+    {{msg}}
+<div id="printableArea">   
+    <h3 class="mt-4">Assessment Marks </h3>
+    <form method="POST" autocomplete="off" >
+            <div class="input-group">
+                    <select name="assissmentname" id="assissmentname" autofocus="on" required class="form-select" >
+                        <option value="">Select Assessment</option>
+                        {% for a in assessment %}
+                        <option value="{{a.id}}">{{a.assesment_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="className" id="className" required  class="form-select" >
+                        <option value="">Select Class</option>
+                        {% for c in classsection %}
+                        <option value="{{c.subject_id}}_{{c.Addclass_id}}_{{c.section_id}}">{{c.Addclass}} {{c.section}} ({{c.subject}})</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" class="btn btn-success" name="btnsubmit" value="Get Student">
+    </div>
+                     
+        {% csrf_token %}
+    </form>
+{% if Assessmentdata %}
+    <form name="frmmarksdisplay" method="post">
+                <input type="hidden" name="ddlassesmentid" value="{{asssementtype}}">
+                <input type="hidden" name="ddlclassid" value="{{ddlclasses}}">
+                <input type="hidden" name="ddlsectionid" value="{{ddlsectiones}}">
+                <input type="hidden" name="ddlsubjectid" value="{{ddlsubject}}">
+
+                <table class="table table-bordered mt-3">
+                   <tr> 
+
+                       <td><b>Assesment Type</b></td>
+                       <td>{{assementtypeid}}</td>
+                       <td><b>Class</b></td>
+                       <td>{{classesid}} {{sectionid}}</td>
+                   </tr>
+                   <tr>
+                       <td><b>Subject</b></td>
+                       <td colspan="3">{{subjectid}}</td>
+
+                   </tr>
+
+               </table> 
+                                   
+   
+               <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Student Id</th>
+                        <th>Student Name</th>
+                        <th>Marks Scored</th>
+                        <th>Remarks</th>
+                    </tr>                    
+                </thead>
+                        {% for a in Assessmentdata %} 
+                        
+
+                        <tbody><tr>
+                        <td>{{ a.studentid_id }}</td>
+                        <td>{{ a.studentid.studentname }} {{ a.studentid.fathername }}{{ a.studentid.surname }} </td>
+                        <td>{{ a.assessmentmarks }}</td>         
+                        <td>{{ a.subjectresult }}</td>         
+
+                        </tr>
+                        {% endfor%}
+                         
+                    </tbody>
+                        
+                </table> 
+            </div>
+        <center>
+             <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-info" />       
+        </center>    
+      </div>
+      {%endif%}
+     {% csrf_token %} 
+</form>
+</div>
+    {% include 'design/last.html' %}
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+        {% include 'design/head.html' %}
+    <title>StudentFeedback</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+        {% include 'design/studentmid.html' %}
+<div class="form-control">    
+    <h3 class="mt-4">Student Feedback</h3>
+   <form name="frmfeedback" method="post" autocomplete="off">
+<input type="hidden" name="txtsubject" value="{{subject}}">
+
+    <div class="box">
+        <table align="center">
+            <tr>
+                <td>
+                    <font color="red">*</font><label for="class"><b>Subject/Staff</b></label>
+                    <select name="subject" id="subject" required class="form-select" >
+                       <option>Select subject</option>
+                        {% for s in subject %}
+                        <option value="{{s.subject_id}}_{{s.staffid_id}}"> {{s.staffid}} ({{s.subject}})</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+                    
+            <tr>
+                <td>
+                        {% for f in feedback %}
+                         
+                        <table class="table">
+                            <tr>
+                                <td colspan="4">
+<b>{{f.feedback}}</b>
+                                </td>
+                            </tr>
+                            <tr>
+                        <td>Best <input type="radio" class="form-radio" checked name="SID{{f.id}}" value="{{f.id}}_3"></td>
+                        <td>Better <input type="radio" name="SID{{f.id}}" value="{{f.id}}_2"></td>
+                         <td>Good <input type="radio" name="SID{{f.id}}" value="{{f.id}}_1"></td>
+                        <td>Not Satisfied <input type="radio" name="SID{{f.id}}" value="{{f.id}}_0"></td>
+                        </tr>
+
+                        {% endfor %}
+                    </select>
+                   </td>
+            </tr> 
+            <tr>
+                <td colspan="4" align="center">
+                     <input type="submit" class="btn btn-success" name="btnsubmit" value="Submit Feedback">
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <input type="text" name="studentmid" placeholder=" Enter The Student name"
+                </td>
+            </tr>
+        </table>
+
+    {% csrf_token %}
+</form>
+</div>
+{% include 'design/last.html' %}
+</body>
+</html>

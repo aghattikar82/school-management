@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Class Work</title>
+	{% include "design/head.html" %}
+</head>
+<body>
+	{% include 'design/studentmid.html' %}
+	<form name="studentwork" method="POST">
+	<h2>Classwork</h2>
+
+		<div class="container-fluid mt-3" >
+			<div class="row">
+				<div class="input-group mb-3" align="center">
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+
+						<div class="col-lg-4 col-md-12 col-sm-12">
+							<input type="text" name="date" value="{{academicyear}}" class="form-control" required autocomplete="off" autofocus="on">
+						</div>
+					<input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+				</div>
+			</div>
+		</div>
+		{% csrf_token %}
+	</form>
+	<form name="studentworkdisplay" method="POST">
+		{% for d in work %}
+			<div class="container-fluid mt-3" >
+				<div class="row">
+					<div class="input-group mb-3">
+						<div class="col-lg-3 col-md-0 col-sm-0"></div>
+						<div class="col-lg-12 col-md-12 col-sm-12"><b>Subjects : </b> {{d.subjects}}<br><b>Home Work : </b> {{d.workdetails}}
+<hr/>
+						</div>
+						<div class="col-lg-3 col-md-0 col-sm-0"></div>
+					
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+			{% csrf_token %}
+	</form>
+	{% include 'design/last.html' %}
+</body>
+</html>

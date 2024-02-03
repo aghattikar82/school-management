@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calender</title>
+	{% include "design/head.html" %}
+</head>
+<body>
+	{% include 'design/studentmid.html' %}
+	<form name="calender" method="POST" enctype="multipart/form-data">
+	<h2>Calender</h2>
+		{% for d in data %}
+			<div class="container-fluid mt-3" >
+				<div class="row" >
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+					<div class="col-lg-6 col-md-12 col-sm-12"><b>Category : </b> {{d.event}}</div>
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+					<div class="col-lg-6 col-md-12 col-sm-12"><b>Event Date : </b> {{d.date}}</div>
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+					
+					
+				</div>
+			</div><br>
+			<hr>
+		{% endfor %}
+			{% csrf_token %} 
+	</form>
+	{% include 'design/last.html' %}
+</body>
+</html>

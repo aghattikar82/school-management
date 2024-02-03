@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Attendence </title>
+</head>
+<body>
+  {% include "design/facultymid.html" %}
+   <form autocomplete="off"  method="POST">
+    <h2>Student Attendance</h2>
+    <center>
+      <div class="container-fluid mt-3" >
+        <div class="col-lg-6">
+            <div class="input-group mb-3" align="center">
+             <select name="class" autofocus="on" required class="form-select select2-hidden-accessible">
+                <option>Select Class Section </option>
+                {% for i in attendancedata %}
+                <option value="{{i.id}}">{{i.Addclass}} {{i.section}} </option>
+                {%endfor%}
+             </select>
+           <input type="submit" name="btnsubmit" value="Get Student" class="btn btn-info">
+         </div>
+       </div>
+     </div>
+   </center>
+    {% csrf_token %}
+  </form>
+  
+  {% if data %}
+  <form name="frm" method="post">
+    <input type="hidden" name="txtclass" value="{{sclass}}">
+    <input type="hidden" name="txtsection" value="{{ssection}}">
+
+                        <table border="2" align="center" class="table table-bordered">
+                            <thead>
+                                  <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Attendance</th>
+                                  </tr>
+                            </thead>
+                                  {% for d in data %}
+                              
+
+                                <tbody>
+                                  <tr>
+                                    <td>{{d.id}} </td>
+                                    <td>{{d.studentname}} {{d.fathername}} {{d.surname}} </td>
+                                    <td>
+                                      <select class="form-select" name="SID{{d.id}}">
+                                        <option value="{{d.id}}_1">PRESENT</option>
+                                        <option value="{{d.id}}_0">ABSENT</option>
+                                      </select>
+                                    </td>
+                                      {%csrf_token %} 
+                                   </tr>
+
+                                {% endfor %}
+                              </tbody>
+                                </table>
+      <center>
+    <input type="submit" class="btn btn-success" name="btnsubmit" value="Submit Attendance">
+    <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+  </center>
+
+ </form>
+ {% endif %}
+ {% include "design/last.html" %}
+
+</body>
+</html>

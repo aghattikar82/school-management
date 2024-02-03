@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<title>Add Caste</title>
+</head>
+<body>
+	{% include "design/operatormid.html" %}
+		<h3>Add Caste</h3>
+	<form name="frmaddcaste" method="post" autocomplete="off">
+		<div class="container-fluid mt-3" align="center" >
+		<div class="col-lg-6" style="text-align:left;">
+			<label for="addcaste"><font color="red" >*</font>Caste</label>
+			<input type="text" autocomplete="off" autofocus="on" name="addcaste" class="form-control" required placeholder="Add Caste ">
+			
+		</div>	
+		</div>
+
+		<p></p>
+		<center>
+		<div class="col-lg-6">
+			<input type="submit" name="txtsubmit" value="Add Caste" class="btn btn-success">
+            <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+
+		</div> </center>
+		{% csrf_token %}
+	</form>
+</div>
+
+	{% include "design/last.html" %}
+</body>
+</html>

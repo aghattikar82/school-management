@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+ {% include 'design/head.html' %}
+  <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Add Books</title>
+   
+
+</head>
+<body>
+  {% include 'design/librarymid.html' %}
+<h1 align="left">Add Book</h1>
+<form style="text-align: left;"   autocomplete="off"   method="post" >
+
+<div class="row">
+  <div class="form-group col-md-12">
+   <label for="name"><b><font color="red">*</font> Book Name</b></label>
+   <input autofocus="on" type="text" class="form-control" placeholder="Enter Book Name" name="bookname" id="bookname" required>
+</div>
+</div>
+
+<div class="row">
+  <div class="form-group col-md-6">
+    <label for="name"><b><font color="red">*</font> Book Type</b></label>
+   <select class="form-select form-control " name="booktype" id="booktype">
+      <option value="">Select Book Type </option>
+      <option >Book</option>
+      <option >Journal</option>
+    </select>
+  </div>
+  
+  <div class="form-group col-md-6">
+   <label for="name"><b><font color="red">*</font> Title</b></label>
+   <input type="text" class="form-control" placeholder="Enter Title" name="title" id="title" required>
+</div>
+</div>
+
+<div class="row">
+ <div class="form-group col-md-6">
+   <label for="name"><b><font color="red">*</font> ISBN Number</b></label>
+   <input type="number" class="form-control" placeholder="Enter ISBN Number" name="isbn_no" id="isbn_no" required>
+</div>
+  <div class="form-group col-md-6">
+   <label for="name"><b><font color="red">*</font> Publisher</b></label>
+   <input type="text" class="form-control" placeholder="Enter Publisher Name" name="publisher" id="publisher" required>
+</div>
+
+</div>
+
+<div class="row">
+<div class="form-group col-md-6">
+   <label for="name"><b><font color="red">*</font> Author</b></label>
+   <input type="text" class="form-control" placeholder="Enter Author Name" name="author" id="author" required>
+</div>
+
+  <div class="form-group col-md-6">
+   <label for="name"><b><font color="red">*</font> Published Year</b></label>
+   <input type="number" class="form-control" placeholder="Enter Published Year" name="published_yr" id="published_yr" required>
+</div>
+
+</div>
+
+<div class="row">
+  <div class="form-group col-md-6">
+   <label for="name"><b><font color="red">*</font> Edition</b></label>
+   <input type="text" class="form-control" placeholder="Enter Edition" name="edition" id="edition" required>
+</div>
+
+  <div class="form-group col-md-6">
+   <label for="name"><b><font color="red">*</font> Cost</b></label>
+   <input type="text" class="form-control" placeholder="Enter  Cost" name="publication_cost" id="publication_cost" required>
+</div>
+
+</div>
+
+<div class="row">
+    <div class="form-group col-md-6">
+    <label for="name"><b><font color="red">*</font>Number Of Books</b></label>
+     <input type="number" name="numberofbooks" class="form-control" placeholder="Enter No of Books" required >
+   </div>
+   <div class="form-group col-md-6">
+   <label for="name"><b><font color="red">*</font> Enter Row</b></label>
+   <input type="text" class="form-control" placeholder="Enter Row" name="row" id="row" required>
+</div>
+</div>
+
+<div class="row">
+ <div class="form-group col-md-6">
+   <label for="name"><b><font color="red">*</font>Enter Shelf</b></label>
+   <input type="text" class="form-control" placeholder="Enter Shelf" name="shelf" id="shelf" required>
+</div>
+ <div class="form-group col-md-6">
+   <label for="name"><b><font color="red">*</font>Enter Rack</b></label>
+   <input type="text" class="form-control" placeholder="Enter Rack" name="rack" id="rack" required>
+</div>
+  
+</div>
+
+  
+ <center>
+  <div  class="col-md-2">
+<br>
+<button class="form-control btn btn-success" name="btnaddbook">Add Book</button>
+</div>
+</center>
+     {% csrf_token %}
+  
+  </form>
+</body>  
+
+
+{% include 'design/last.html' %}
+
+
+</body>
+</html>

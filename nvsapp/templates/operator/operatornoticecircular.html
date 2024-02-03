@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'design/head.html' %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+    <title>Notice Circular</title>
+</head>
+<body>
+    {% include 'design/operatormid.html' %}
+
+        <h2>Notice Circular</h2>  
+    <form method="POST" autocomplete="off" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-lg-3 col-ms-0 col-md-0"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <font color="red">*</font> <b> <label >Class  </label></b>
+                        <select class="form-select" required autofocus="on" name="textclass"> 
+                            <option>Select Class </option>
+                            <option value="100">ALL Classes </option>
+                            
+                            {% for d in datas %}
+                            <option value="{{d.id}}"> {{d.className}} </option>
+                              {%endfor%}
+                         </select>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-3 col-ms-0 col-md-0"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <font color="red">*</font> <b> <label >Section  </label></b>
+                        <select class="form-select" name="textsection">
+                            <option> Select Section </option>
+                            {% for d in data %}
+                            <option value="{{d.id}}"> {{d.sectionName}} </option>
+                              {%endfor%}
+                        </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-ms-0 col-md-0"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <font color="red">*</font><b> <label >Subject</label></b>
+                     <input type="text" name="textsubject"  class="form-control" required maxlength="250">
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-lg-3 col-ms-0 col-md-0"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <font color="red">*</font><b> <label > Matter </label></b>
+                   <textarea type="text" name="textmater"  class="form-control" required></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-ms-0 col-md-0"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <font color="red">*</font><b> <label >Image Upload</label></b>
+                     <input type="file" name="myfile"  class="form-control" required >
+                </div>
+            </div>
+
+
+            <p></p>
+            <div align="center">
+            <input type="submit" class="btn btn-success" name="btnsubmit" value="Submit Circular">
+             <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+            </div>
+ 
+        {% csrf_token %}
+    </form>
+</div>
+    {% include 'design/last.html' %}
+
+</body>
+</html>

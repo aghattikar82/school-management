@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dashboard</title>
+	{% load static %}
+
+{% include "design/head.html" %}
+	
+</head>
+<body>
+{% include "design/accountantmid.html" %}
+<h2>Dashboard</h2>
+<center>
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-3 col-sm-12 col-md-6">
+			<a href="#" class="btn btn-info">
+				 Challans Created<br/>
+				{{challancreated}}
+			</a>
+</div>
+
+<div class="col-lg-3 col-sm-12 col-md-6">
+			<a href="#" class="btn btn-warning">
+				Pending Payments<br/>
+				{{pendingpayments}}
+			</a>
+</div>
+<div class="col-lg-3 col-sm-12 col-md-6">
+			<a href="#" class="btn btn-success">
+				Completed Payments<br/>
+				{{completedpayments}}
+			</a>
+</div>
+<div class="col-lg-3 col-sm-12 col-md-6">
+			<a href="#" class="btn btn-danger">
+				Challans Rejected<br/>
+				{{challansrejected}}
+			</a>
+</div>
+
+
+</div>
+</div>
+</center>
+{% include "design/last.html" %}  
+
+	
+</body>
+</html>

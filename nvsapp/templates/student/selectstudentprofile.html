@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Student Profile</title>
+    {% include 'design/head.html' %}
+</head>
+<body>
+    {% include 'design/studentmid.html' %}
+    <h2>Choose Student Profile</h2>
+   
+   <div class="container-fluid">
+    <div class="row">
+        {% for sd in studentdata %}
+        <div class="col-6">
+        <center>
+            <form name="frm" method="post">
+            <input type="image" src="{{sd.studentphoto}}" style="width:25%;height:180px;border-style: solid;">
+            <br/>
+            <b><font color="blue">{{sd.studentname}} {{sd.fathername}} {{sd.surname}}</font></b>
+            <br/><b>{{sd.srnumber}}</b>
+            <br/><b>{{sd.chooseclass}} {{sd.section}}</b>
+
+            <input type="hidden" name="sid" value="{{sd.id}}">
+            <input type="hidden" name="iid" value="{{sd.instituteid_id}}">
+            <input type="hidden" name="aid" value="{{sd.academicyearid_id}}">
+            <input type="hidden" name="cid" value="{{sd.chooseclass_id}}">
+            <input type="hidden" name="seid" value="{{sd.section_id}}">
+            <input type="hidden" name="srn" value="{{sd.srnumber}}">
+            {%csrf_token%}
+            
+            
+            </form>
+        </center>
+        </div>
+        {%endfor%}
+        
+    </div>
+   </div>
+    {% include 'design/last.html' %}
+
+</body>
+</html>

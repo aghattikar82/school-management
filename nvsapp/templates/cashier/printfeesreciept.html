@@ -1,0 +1,92 @@
+  <!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Fees Report </title>
+		<script type="text/javascript">
+        function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
+	</script>
+</head>
+<body>
+	{% include "design/cashiermid.html" %}	
+
+
+{% for f in feepaiddata %}
+  <div id="printableArea"  >
+<div style="border:double;">
+    <table class="table"  border="2">
+        <tr>
+            <table class="table table-borderless">
+                <tr>
+                                        <td style="width: 100%;">
+                                          {%for insd in institutedata %}
+                                            <table  align="center" border="1"class="table table-borderless">
+                                                <tr><td><b><h3><center>{{insd.institutename}}</center></h3></b>
+                                                  <h6>
+                                                  <center><pre>{{insd.address}}</pre></center></h6><h6><center>Mobile:{{insd.mobilenumber}}</center></h6></td></tr>
+                                             </table>
+                                          {%endfor%}
+                                         </td>
+
+                </tr>
+                <tr>
+                  <td align="center" width="100%">
+                      <table width="100%"   class="table-borderless">
+
+                                                <tr><td align="left" width="32%"><b> Receipt No:</b>&nbsp;{{f.studentid.id}}</td>
+<td width="36%">
+                                                <center><b>Reciept</b></center></td>
+                                                <td align="right" width="32%"><b> Date:</b>{{f.createdonind}}</td></tr>
+                                            </table>
+
+                  </td>
+                </tr>
+            </table>
+            <table class="table">
+                <td colspan="2" style="width: 100%;">
+                            <table class="table" border="1">
+<tr>
+
+</tr>                              
+<tr><td colspan="2"><b>Student Name:</b>&nbsp; {{f.studentid.studentname}} {{f.studentid.fathername}} {{f.studentid.surname}}</td></tr>
+
+<tr>
+  <td><b>Student ID:</b> &nbsp;{{f.studentid.id}}</td>
+  <td><b>Course-Semester:</b>&nbsp; {{f.classid}} {{f.sectionid}}</td>
+</tr>
+<tr>
+<td><b>Total Amount:</b>Rs. {{f.amountpaid}}</td>
+<td><b>Payment Mode:</b> {{f.ddlpaymentmode}}</td>
+</tr>
+                                </tr>
+                                
+                            </table>
+            </table>
+
+
+</div>
+
+</div>
+<br/>
+<center>
+       <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-info" />       
+    </center> 
+ {% endfor %}
+
+
+
+{% include "design/last.html" %}
+
+</html>

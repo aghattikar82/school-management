@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<title>Fees Type</title>
+</head>
+<body>
+	{% include "design/accountantmid.html" %}
+	<form name="frmfeestype" method="post" autocomplete="off">
+		<h3>Fees Head type</h3>
+			<div class="container-fluid mt-3" align="center" >
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="select"><font color="red" >*</font>Select Class</label>
+							<select name="select_class" required class="form-select" autofocus="on">
+								<option  value="">Select Class</option>
+							{% for i in classdata  %}		
+									<option value="{{i.id}}">{{i.className}}</option>
+							{% endfor %}
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="fees"><font color="red" >*</font>Fees Head Name</label>
+							<input type="text" name="fees" class="form-control" required placeholder="Head Name ">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="amount"><font color="red" >*</font>Amount</label>
+							<input type="text" name="amount" class="form-control" required placeholder="Enter Amount ">
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<p></p>
+			<center>
+				<div class="col-lg-6">
+					<input type="submit" name="txtsubmit" value="Add Fees Type" class="btn btn-success">
+					<input type="reset" name="Cancel" value="Cancel" class="btn btn-warning">
+				</div>
+			</center>
+
+		{% csrf_token %}
+	</form>
+
+	{% include "design/last.html" %}
+</body>
+</html>

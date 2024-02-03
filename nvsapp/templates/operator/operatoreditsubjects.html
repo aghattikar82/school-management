@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Edit Class</title>
+	{% include "design/head.html" %}
+</head>
+<body>
+	{% include "design/operatormid.html" %}
+{% for d in data %}	
+<h2>Edit Assessment Details</h2>
+	<form name="editclass" method="post">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-6">
+					<label for="name"><font color="red">*</font> Subject Id</label>
+					<input type="text" name="subid" readonly value="{{d.id}}" class="form-control">
+
+					
+				</div>
+				<div class="col-lg-6">
+					<label for="name"><font color="red">*</font> Subject   Name</label>
+					<input type="text" name="subjectname" value="{{d.subjectname}}"class="form-control">
+
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					<label for="name"><font color="red">*</font> Optional/Compalsary</label>
+					<input type="text" name="op_com"  value="{{d.optional}}" class="form-control">
+
+					
+				</div>
+				<div class="col-lg-6">
+					<label for="name"><font color="red">*</font> Subject Type</label>
+					<input type="text" name="subtype" value="{{d.subjecttype}}"class="form-control">
+
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<label for="name"><font color="red">*</font> Subject Category</label>
+					<input type="text" name="subcategory" value="{{d.subjectcategory}}"class="form-control">
+
+				</div>
+				
+			</div>
+			<br>
+			<div align="center">
+				<input type="submit" name="btnsubmit" value="Update" class="btn btn-success">
+				
+			</div>
+			
+		</div>
+		
+
+{% csrf_token %}
+	</form>
+
+{% endfor %}
+{% include "design/last.html" %}
+</body>
+</html>

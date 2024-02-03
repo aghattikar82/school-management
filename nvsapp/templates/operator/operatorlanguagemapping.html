@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<title>Add Subject</title>
+</head>
+<body>
+	{% include "design/operatormid.html" %}
+		<h3>Language Mapping</h3>
+	<form name="frmaddcaste" method="post" autocomplete="off">
+		<div class="container-fluid mt-3" align="center" >	
+
+		<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="fl"><font color="red" >*</font>First Lanuage</label>
+							<select name="fl" required class="form-select" autofocus="on">
+								<option value="">Select First Language</option>
+								{% for s in subject  %}			
+								<option value="{{s.id}}">{{s.subjectname}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="sl"><font color="red" >*</font>Second Lanuage</label>
+							<select name="sl" required class="form-select" autofocus="on">
+								<option value="">Select Second Language</option>
+								{% for s in subject  %}			
+								<option value="{{s.id}}">{{s.subjectname}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="tl"><font color="red" >*</font>Third Lanuage</label>
+							<select name="tl" required class="form-select" autofocus="on">
+								<option value="">Select Second Language</option>
+								{% for s in subject  %}			
+								<option value="{{s.id}}">{{s.subjectname}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+				</div>
+
+		<center>
+		<div class="col-lg-6 mt-3">
+			<input type="submit" name="txtsubmit" value="Add Language" class="btn btn-success">
+            <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+
+		</div> </center>
+		{% csrf_token %}
+	</form>
+</div>
+
+	{% include "design/last.html" %}
+</body>
+</html>

@@ -1,0 +1,103 @@
+  <!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fees Search Day Wise</title>
+</head>
+<body>
+  {% include "design/cashiermid.html" %} 
+
+
+<center>
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-3 col-sm-12 col-md-6">
+      <a href="#" class="btn btn-success">
+        Total Fees Collected<br/>
+        {{totfeeescollected}}
+      </a>
+</div>
+<div class="col-lg-3 col-sm-12 col-md-6">
+      <a href="#" class="btn btn-primary">
+        Todays Fees Collection<br/>
+        {{todayscollection}}
+      </a>
+</div>
+
+
+<div class="col-lg-3 col-sm-12 col-md-6">
+      <a href="#" class="btn btn-info">
+        Todays Challans Created<br/>
+        {{challancreated}}
+      </a>
+</div>
+
+<div class="col-lg-3 col-sm-12 col-md-6">
+      <a href="#" class="btn btn-warning">
+        Todays Challans Cleared<br/>
+        {{challanscleared}}
+      </a>
+</div>
+
+
+</div>
+</div>
+</center>
+
+<h3>Pending Challan</h3>
+
+{% if challanpaiddata %}
+
+    <div class="container mt-3"  >
+  <div id="accordion">
+
+
+    <div class="card">
+  <div id="printableArea" >
+         <table align="center" class="table table-bordered">
+        <tr>
+          <th>Challan No.</th>
+          <th>Student Id</th>
+          <th>Student Name</th>
+          <th>Class-Section</th>
+          <th>Fees Heading</th>
+          <th>Amount</th>
+          
+        </tr>
+      {% for cp in challanpaiddata %}
+          <tr>
+            <td>
+              <form name="frm" method="post" action="cashiersearchchallan">
+                <input type="hidden" name="operation" value="search">
+                <input type="submit" name="txtchallannumber" value="{{cp.id}}" class="btn btn-link">
+              {% csrf_token %}
+              </form>
+          </td>
+            <td>{{cp.studentid_id}}</td>
+            <td>{{cp.studentid.studentname}} {{cp.studentid.fathername}} {{cp.studentid.surname}}</td>
+            <td>{{cp.studentid.chooseclass}} {{cp.studentid.section}}</td>
+            <td>{{cp.feestypeid.feestemplate}}-TERM {{cp.feestypeid.feesterm}}</td>
+            <td>{{cp.totalamounttopay}}</td>
+
+          </tr>
+{% endfor %}
+<tr>
+  <td colspan="5"><b>Total Challan Amount</b></td>
+  <td>{{challanpaiddataamount}}</td>
+</tr>
+         </table>
+        </div>   
+      </div>
+    </div>
+</div>
+</div>
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+{% include "design/last.html" %}
+
+</html>

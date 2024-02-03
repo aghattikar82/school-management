@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+    <title>Assesment Master</title>
+</head>
+<body>
+    {% include "design/operatormid.html" %}
+            <h3 align="left">Assesment Master</h3>
+        <form name="frmaddreligion" method="post" autocomplete="off"  >
+            <div class="container-fluid mt-3" align="center" >
+                <div class="col-lg-6" style="text-align:left;">
+                    <label for="assesment_name"><font color="red" >*</font>Assesment Name</label>
+                    <input type="text" name="assesment_name" class="form-control" autofocus="on" required placeholder="Enter Assesment Name ">
+                </div>
+            </div>
+            <div class="container-fluid mt-3" align="center" >
+                <div class="col-lg-6" style="text-align:left;">
+                    <label for="minimum_marks"><font color="red" >*</font>Minimum Marks</label>
+                    <input type="text" name="minimum_marks" class="form-control" autofocus="on" required placeholder="Enter Minimum Marks ">
+                </div>
+            </div>
+            <div class="container-fluid mt-3" align="center" >
+                <div class="col-lg-6" style="text-align:left;">
+                    <label for="maximum_marks"><font color="red" >*</font>Maximum Marks</label>
+                    <input type="text" name="maximum_marks" class="form-control" autofocus="on" required placeholder="Enter Maximum Marks ">
+                </div>
+            </div>
+
+    <div class="colspan-2 mt-3" align="center">
+        <input type="submit" name="txtsubmit" value="Submit" class="btn btn-success">
+        <input type="reset" name="txtcancel" value="Cancel" class="btn btn-warning">
+    </div> 
+    
+    
+   
+ {% csrf_token %}
+ </form>
+
+    {% include "design/last.html" %}
+</body>
+</html>

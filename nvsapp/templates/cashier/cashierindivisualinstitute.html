@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Institute Wise Fees</title>
+	{% load static %}
+	{% include 'design/head.html' %}
+</head>
+<body>
+{% include 'design/cashiermid.html' %}
+<h5>Institute Wise Fees</h5>
+<form name="frm" method="post" autocomplete="off">
+   <input type="hidden" name="instituteid" value="{{instituteid}}" />
+   <input type="hidden" name="institutename" value="{{institutename}}" />
+<div class="container">
+  <div class="row">
+    <div class="col-4 ">    
+      <font color="red">*</font><b>From Date:</b>
+        <input autofocus="on" class="form-control" type="date" name="fromdate" required>
+    </div>
+    <div class="col-4">
+              <font color="red">*</font><b>To Date:</b>
+        <input class="form-control" type="date" name="todate" required>
+
+    </div>
+        <div class="col-4"><center><br/>
+      <input type="submit" style="width:100%" name="btnsearch"  value="Search" class="btn btn-warning">
+    </center>
+    </div>
+
+    
+  </div>
+  
+</div>
+            {% csrf_token %}
+
+</form>
+<br/>
+{%if data %}
+<h6><b>Institute Name:</b><font color="blue">{{institutename}}</font>&emsp;
+<b>Class:</b><font color="blue">{{classname}}</font>&emsp;
+<b>From Date:</b><font color="blue">{{dispfromdate}}</font>&emsp;
+<b>To Date:</b><font color="blue">{{disptodate}}</font></h6>
+<br/>
+<table class="table ">
+  <tr>
+    <td><b>Class</b></td>
+    <td><b>Fees to Collect</b></td>
+    <td><b>Total Discount</b></td>
+
+    <td><b>Fees Collected</b></td>
+    <td><b>Balance Fees</b></td>
+  </tr>
+{% for d in data %}
+<tr>
+<td>
+  <form name="frm" method="post" action="cashierindivisualclass">
+   <input type="hidden" name="instituteid" value="{{d.instituteid}}" />
+   <input type="hidden" name="institutename" value="{{d.institutename}}" />
+   <input type="hidden" name="fromdate" value="{{fromdate}}" />
+   <input type="hidden" name="todate" value="{{todate}}" />
+   <input type="hidden" name="classid" value="{{d.classid}}" />
+    <input type="hidden" name="classname" value="{{d.classname}}" />
+   <input type="submit" name="btnsubmit" class="btn btn-link" value="{{d.classname}}">
+    
+{%csrf_token%}
+</form>
+</td>
+<td>{{d.totalcollection}}</td>
+<td>{{d.totaldiscount}}</td>
+<td>{{d.totalcollected}}</td>
+<td>{{d.pendingamount}}</td>
+</tr>
+{%endfor%}
+<tr>
+  <td>
+    <b>Final Fees Summary</b>
+  </td>
+  <td><font color="blue"><b>{{finalcollection}}</b></font></td>
+  <td><font color="orange"><b>{{finaldiscount}}</b></font></td>
+  <td><font color="green"><b>{{finalcollected}}</b></font></td>
+  <td><font color="red"><b>{{finalpending}}</b></font></td>
+  
+</tr>
+</table>
+
+{%endif%}
+{% include 'design/last.html' %}
+</body>
+</html>

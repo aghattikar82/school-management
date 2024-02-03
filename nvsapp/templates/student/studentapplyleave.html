@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'design/head.html' %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+    <title>Leave Student</title>
+</head>
+<body>
+    {% include 'design/studentmid.html' %}
+<h2>Student Leave Application </h2>
+
+
+  <form method="POST" autocomplete="off">
+        <div class="row">
+            <div class="col-lg-3 col-ms-0 col-md-0"></div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <font color="red" >*</font> <b> <label > Date of leave</label></b>
+                <input type="date"  name="leavedate" required class="form-control" autofocus="on" value={{academicyear}} > 
+              
+            </div>
+        </div>    
+
+
+        <div class="row">
+            <div class="col-lg-3 col-ms-0 col-md-0"></div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <font color="red">*</font> <b> <label >Date Of Return</label></b>
+                <input type="date" name="enddate" required class="form-control" autofocus="on"  value={{academicyears}}>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-3 col-ms-0 col-md-0"></div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <font color="red">*</font><b> <label >Subject</label></b>
+                <input type="text"  required name="textsubject" class="form-control"  placeholder="Enter subject" >
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-ms-0 col-md-0"></div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <font color="red">*</font> <b> <label >Description </label></b>
+                <textarea placeholder="Enter the reason for leave" name="textsa" rows="5" required class="form-control" ></textarea>
+            </div>
+        </div>
+
+
+            <p></p>
+            <div align="center">
+            <input type="submit" class="btn btn-success" name="btnsubmit" value="Leave Submit">
+             <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+            </div>
+ 
+        {% csrf_token %}
+    </form>
+</div>
+    {% include 'design/last.html' %}
+
+</body>
+</html>

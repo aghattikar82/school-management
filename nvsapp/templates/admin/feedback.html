@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+    <title>Feedback Master</title>
+</head>
+<body>
+    {% include "design/adminmid.html" %}
+            <h3 align="left">Feedback Questions</h3>
+        <form name="frmfeedback" method="post" autocomplete="off"  >
+            <div class="container-fluid mt-3" align="center" >
+                <div class="col-lg-6" style="text-align:left;">
+                    <label for="feedbackquestion"><font color="red" >*</font>Feedback Question</label>
+                    <input type="text" name="feedbackquestion" class="form-control" autofocus="on" required placeholder="Add Feedback">
+                </div>
+            </div>
+    <div class="colspan-2 mt-3" align="center">
+        <input type="submit" name="txtsubmit" value="Submit" class="btn btn-success">
+        <input type="reset" name="txtcancel" value="Cancel" class="btn btn-warning">
+    </div> 
+    
+    
+   
+ {% csrf_token %}
+ </form>
+
+    {% include "design/last.html" %}
+</body>
+</html>

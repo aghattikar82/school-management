@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<title>Fees Type</title>
+</head>
+<body>
+	{{msg}}
+	{% include "design/accountantmid.html" %}
+	<form name="frmfeestype" method="post" autocomplete="off">
+		<h3>Fees Type</h3>
+		<div align="center" style="height: 30px;">{{msg}}</div>
+			<div class="container-fluid mt-3" align="center" >
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="select"><font color="red" >*</font>Class</label>
+							<select name="select_class" required class="form-select" autofocus="on">
+								<option  value="">Select class</option>
+							{% for i in data  %}		
+									<option value="{{i.id}}">{{i.className}}</option>
+							{% endfor %}
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="select"><font color="red" >*</font>Caste</label>
+							<select name="select_caste" required class="form-select">
+								<option  value="">Select Caste</option>
+							{% for i in caste  %}		
+									<option value="{{i.id}}">{{i.caste}}</option>
+							{% endfor %}
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="select"><font color="red" >*</font>Fee Type</label>
+							<select name="select_fee_type" required class="form-select">
+								<option  value="">Select Fee Type</option>		
+								<option value="Compulsory">Compulsory</option>
+								<option value="Optional">Optional</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="select"><font color="red" >*</font>Fee For</label>
+							<select name="select_type" required class="form-select">
+								<option  value="">Select Type</option>
+							{% for i in headstype  %}
+									<option value="{{i.id}}">{{i.head}}</option>
+							{% endfor %}	
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="fees"><font color="red" >*</font>Fees</label>
+							<input type="text" name="fees" class="form-control" required placeholder="Enter Fees ">
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<p></p>
+			<center>
+				<div class="col-lg-6">
+					<input type="submit" name="txtsubmit" value="Add Fees Type" class="btn btn-success">
+					<input type="reset" name="Cancel" value="Cancel" class="btn btn-warning">
+					
+				</div>
+			</center>
+
+		{% csrf_token %}
+	</form>
+
+	{% include "design/last.html" %}
+</body>
+</html>

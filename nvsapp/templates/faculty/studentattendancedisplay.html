@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class Work Display </title>
+</head>
+<body>
+  {% include "design/facultymid.html" %}
+<h2>Student Attendance Display </h2>
+
+   <form autocomplete="off"  method="POST">
+       <div class="container-fluid mt-3" >
+          <div class="row">
+            <div class="col-lg-4">
+              <input type="date" name="textdate" class="form-control" autofocus="on" required>  
+            </div>
+                       
+   
+        <div class="col-lg-6">
+            <div class="input-group mb-3" align="center">
+             <select name="class" autofocus="on" required class="form-select select2-hidden-accessible">
+                <option>Select Class Section </option>
+                {% for i in classes %}
+                <option value="{{i.id}}">{{i.className}} {{i.sectionName}}  </option>
+                {%endfor%}
+             </select>
+           <input type="submit" name="btnsubmit" value=" Attendance Display  " class="btn btn-info">
+         </div>
+       </div>
+     </div>
+</div>
+ 
+    {% csrf_token %}
+  </form>
+
+  
+  	<div class="table-responsive">
+    			<table class="table table-bordered" align="center">
+      				<thead>
+        				<tr>
+        				
+        					<th>Studentid</th>
+                            <th>Class </th>
+                            <th>Student Name</th>
+       						<th>Attendancestatus</th>
+                       	
+       					</tr>
+       				</thead>
+       			<tbody>
+       							
+       					{% for d in attendancedata %}
+       							
+						<tr>
+                        	<td>{{d.studentid_id}}</td>
+                            <td> {{d.classid}} {{d.sectionid}}</td>
+                            <td>{{d.studentid.studentname}} {{d.studentid.fathername}} {{d.studentid.surname}}</td>
+						    <td>{{d.attendancestatus}}</td>
+                        
+
+						</tr>
+
+       						
+
+       			</tbody>
+       				{% endfor %}		
+       			</table>
+       			  {% csrf_token %}
+
+
+ {% include "design/last.html" %}
+
+</body>
+</html>

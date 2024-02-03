@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assesment</title>
+	{% include "design/head.html" %}
+</head>
+<body>
+	{% include 'design/studentmid.html' %}
+	<form name="academics" method="POST">
+			<h2>Assesment Details</h2>
+
+		<div class="container-fluid mt-3" >
+			<div class="row">
+				<div class="input-group mb-3" align="center">
+					<div class="col-lg-1 col-md-0 col-sm-0"></div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<select required autofocus="on" name="assesment" class="form-select">
+								<option value="">Select Assesment </option>
+							{% for d in MstAssesments %}
+								<option value="{{d.id}}">{{d.assesment_name}}</option>
+							{% endfor %}
+							</select></div>
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<select required name="class" class="form-select">
+								<option value="">Select Class </option>
+							{% for d in classes %}
+								<option value="{{d.id}}">{{d.className}}</option>
+							{% endfor %}
+							</select>
+						</div>
+						<div class="col-lg-2 col-md-6 col-sm-6">
+							<input type="submit" name="btnsubmit" class="btn btn-info form-control" value="Get Data">
+						</div>
+						<div class="col-lg-1 col-md-0 col-sm-0"></div>
+				</div>
+			</div>
+		</div>
+		{% csrf_token %}
+	</form>
+	{%if Marks%}
+	<form name="Assesment" method="POST">
+		<table align="center" class="table table-bordered mt-3" style="width: 50%;">
+			<tr>
+				<th>Subject</th>
+				<th>Marks Scored</th>
+				<th>Remarks</th>
+			</tr>
+			{%for d in Marks%}
+			<tr>
+				<td>{{d.subject}}</td>
+				<td>{{d.assessmentmarks}}</td>
+				<td>{{ d.subjectresult }}</td>
+			</tr>
+			{%endfor%}
+			<tr>
+				<td><b>Total Marks Scored</b></td>
+				<td>{{totalmarks}}</td>
+				<td>{{remarks}}</td>
+			</tr>
+			
+		</table>
+	</form>
+				{%endif%}
+
+	{% include 'design/last.html' %}
+</body>
+</html>

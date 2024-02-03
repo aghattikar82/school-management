@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+    
+    	<title>Generate Challan</title>
+{% include "acc_temp/head.html" %}
+
+</head>
+<body>
+     {% include "acc_temp/accountantmid.html" %}  
+  
+
+ <?php
+ $sid=$_POST["sid"];
+  ?>
+	<table align="center" border="1" class="table table-bordered">
+		<tr>
+		
+        <td><b>Academic Year</b></td>
+        <td><b>Template Type</b></td>
+        <td><b>Template Name</b></td>
+        <td><b>Class Name</b></td>
+        <td><b>Amount</b></td>
+        
+        </tr>
+        <?php
+        
+        $data=$con->query("SELECT  * from tblfeetemplate");
+        while($row=mysqli_fetch_array($data))
+        {
+
+            print("<tr><td>".$row["AYear"]."</td>");
+            print("<td>".$row["TemplateType"]."</td>");
+            print("<td>".$row["TemplateName"]."</td>");
+            print("<td>".$row["ClassName"]."</td>");
+            print("<td>".$row["Amount"]."</td>");
+
+             ?>
+          <td>
+          <form name="frm" method="post" action="generatechallansave.php">
+              <input type="hidden" name="sid" value="<?php echo $sid ?>">
+              <input type="hidden" name="feestemplateid" value="<?php echo $row["feetemplateid"] ?>">
+              <input type="submit" name="btnsubmit" value="Print Challan" class="btn btn-info">
+          </form>
+        </td></tr>
+          <?php
+        
+        } 
+        $con->close();
+        ?>
+		
+	</table>
+    
+
+{% include "acc_temp/last.html" %}  
+
+</body>
+</html>

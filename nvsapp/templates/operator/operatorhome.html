@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dashboard</title>
+	{% include 'design/head.html' %}
+</head>
+<body>
+	{% include 'design/operatormid.html' %}
+	<form name="countrecord" method="POST">
+		<center>
+			<div class="container mt-3">
+				<div class="row">
+					<div class="col-sm-4 mt-3">
+						<a href="operatorstaffcount" style="height:80px;font-size:20px" class="btn btn-success form-control"><b>Staff<br>{{Staffcount}}</b></a>
+					</div>
+					<div class="col-sm-4 mt-3">
+						<a href="rptstudents" style="height:80px;font-size:20px" class="btn btn-warning form-control"><b>Students<br>{{Sdatacount}}</b></a>
+					</div>
+					<div class="col-sm-4 mt-3">
+						<a href=""><button style="height:80px;font-size:20px" class="btn btn-primary form-control"><b>Heads<br>{{hdatacount}}</b></button></a>
+					</div>
+					<div class="col-sm-4 mt-3">
+						<a href=""><button style="height:80px;font-size:20px" class="btn btn-info form-control"><b>Subjects<br>{{Subjectcount}}</b></button></a>
+					</div>
+					<div class="col-sm-4 mt-3" >
+						<a href=""><button style="height:80px;font-size:20px" class="btn btn-secondary form-control"><b>Assesments<br> {{Adtacount}}</b></button></a>
+					</div>
+				</div>
+			</div>
+		</center>
+		{% csrf_token %}			
+	</form>
+	</div>
+	{% include 'design/last.html' %}
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html><html>
+<head>
+   {% include 'design/head.html' %}
+  <title>Issue Books</title>
+</head>
+<body>
+   {% include 'design/librarymid.html' %}
+    <h2>Issue Book</h2>
+  <form autocomplete="off" name="searchrecord" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">
+  <span class="col-2">
+  </span>
+    <span class="col-1">
+    </span>
+    <span class="col-5">
+      <input type="text" autofocus ="on" name="txtsearch" placeholder="Enter Student Id " required class="form-control">
+    </span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">     
+    
+    
+  </div>
+</div>
+{% csrf_token %}
+</form>
+</body>
+{% for i in issuedata %}
+<form name="frmissue" method="post" >
+       
+<table class="table table-bordered" align="center" border="1">
+         
+<tr><td><b>Student Name</b></td><td>{{i.studentname}} {{i.fathername}} {{i.surname}}</td></tr>
+<tr><td><b>Mobile Number</b></td><td>{{i.mobileno}}</td></tr>
+<tr><td><b>Class </b></td><td>{{i.chooseclass}} {{i.section}} Section</td></tr>
+
+            
+ <tr>
+  <td><b>Book ISBN Number</b></td>
+    <td>
+      {% for b in bookdata  %}
+          
+              <input type="hidden" name="bookid" value="{{b.id}}">
+
+      {% endfor %}
+
+      <input type="hidden" name="studentid" value="{{i.id}}">
+      <input type="number" class="form-control" name="isbnnumber"  required placeholder= "Enter ISBN No."/>
+
+    </td>     
+  </tr>  
+  <td colspan="2" align="center">
+            <input type="submit" name="btnsubmit"  align="center" class="btn btn-success" value="Issue Book" >
+
+            <input class="btn btn-warning" type="reset" name="btncancel" value="Cancel">
+
+  </td>
+</tr>
+ 
+             
+            
+        </table>
+{% csrf_token %}
+      </form>
+{% endfor %}
+       {% include 'design/last.html' %}
+
+</html>

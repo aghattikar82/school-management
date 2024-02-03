@@ -1,0 +1,77 @@
+  <!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Fees Search</title>
+		<script type="text/javascript">
+		function ConfirmDelete() {
+    return confirm("Are Your Sure Want to Delete");
+     }
+ </script>
+</head>
+<body>
+	{% include "design/operatormid.html" %}	
+<h3>Fees Template</h3>
+<form autocomplete="off" name="frmfeedetails" method="POST"  >
+
+<table align="center">
+	<tr>
+		<td>
+			<select autofocus="on" name="txtsearch" required class="form-select">
+				<option  value="">Select Class</option>
+					{% for i in classdata  %}		
+					<option value="{{i.id}}">{{i.className}}</option>
+					{% endfor %}
+			</select>
+			
+		</td>
+		<td>
+    <input type="submit" name="btnsubmit" class="btn btn-info" value="Get Fees">				
+		</td>
+	</tr>
+</table>
+{% csrf_token %}
+</form>
+
+{%if feesdata %}
+<table class="table table-boarderd mt-3">
+<tr>
+	<td><b>Class</b></td>
+	<td><b>Term</b></td>
+	<td><b>Category</b></td>
+	<td><b>Fees Template</b></td>
+	<td><b>Fees</b></td>
+	<td><b>Academic Year</b></td>
+	
+	<td><b>Action</b></td>
+	
+</tr>
+{% for f in feesdata %}
+	<tr>
+		<td>{{f.classid}}</td>
+		<td>Term-{{f.feesterm}}</td>
+		<td>{{f.category}}</td>
+		<td>{{f.feestemplate}}</td>
+		<td>{{f.fees}}</td>
+		<td>{{f.academicyearid}}</td>
+		
+		<td>
+        <form method="post" name="txtsearch">
+          <input type="hidden" name="fid" value="{{f.id}}">
+          <input type="submit" name="btnsubmit" onclick="ConfirmDelete()" value="Deactivate" class="btn btn-danger">
+    {% csrf_token %}
+        </form>
+    </td>
+    </tr>
+{% endfor %}
+</table>
+{%endif%}
+
+
+
+
+{% include "design/last.html" %}
+
+</html>

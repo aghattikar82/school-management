@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<title>Fees Template</title>
+</head>
+<body>
+	{% include "design/operatormid.html" %}
+	<form name="frmfeestype" method="post" autocomplete="off">
+		<h3>Fees Template</h3>
+			<div class="container-fluid mt-3" align="center" >
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="select"><font color="red" >*</font>Select Class</label>
+							<select name="classid" required class="form-select" autofocus="on">
+								<option  value="">Select Class</option>
+									{% for i in classdata  %}		
+									<option value="{{i.id}}">{{i.className}}</option>
+									{% endfor %}
+							</select>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="fees"><font color="red" >*</font>Yearly School Fees</label>
+							<input type="number" name="yrschoolfees" class="form-control" required placeholder="Enter Yearly School Fees ">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="fees"><font color="red" >*</font>Yearly Hostel Fees</label>
+							<input type="number" name="yrhostelfees" class="form-control" required placeholder="Enter Yearly Hostel Fees ">
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<p></p>
+			<center>
+				<div class="col-lg-6">
+					<input type="submit" name="txtsubmit" value="Add Fees" class="btn btn-success">
+					<input type="reset" name="Cancel" value="Cancel" class="btn btn-warning">
+					
+				</div>
+			</center>
+
+		{% csrf_token %}
+	</form>
+
+	{% include "design/last.html" %}
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faculty Report</title>
+  <script type="text/javascript">
+    function ConfirmDelete() {
+    return confirm("Are Your Sure Want to Delete");
+     }
+
+
+      function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
+  </script>
+  
+</head>
+<body>
+  {% include "design/operatormid.html" %}  
+  <h2>Faculty Report </h2>
+  
+<form autocomplete="off" name="frmfacultyreport" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">
+      <span class="col-3" >
+        
+        <select class="form-select" required autofocus="on" name="institutename">
+          <option value="">Select Institute Name</option>
+         {% for d in  institutedata %}
+          <option value="{{d.id}}">{{d.institutename}}</option>
+        {% endfor %}  
+        </select>
+        
+      </span>     
+    
+    <span class="col-2">
+      <select name="ddlfield" class="form-select">
+        <option value="">Search By </option>
+        <option value="facultyid">Faculty Id</option>
+        <option value="facultyname">Faculty Name</option>
+        <option value="facultymobilenumber">Faculty Mobile Number</option>
+        
+      </select>
+
+    </span>
+    <span class="col-5">
+      <input type="text" name="txtsearch" placeholder="Enter Faculty Id /Faculty Name/Faculty Mobile Number" class="form-control">
+    </span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">     
+    
+    
+  </div>
+</div>
+
+{% csrf_token %}
+</form>
+
+ {% for d in data.object_list %}
+ <div class="container mt-3"  >
+  <div id="accordion">
+    <div class="card">
+      <a class="btn" data-bs-toggle="collapse" href="#collapse{{d.id}}">
+     
+      <div class="card-header">
+         <b>&nbsp; User ID: </b>{{d.id}}&nbsp;&nbsp; <b>User Name: </b>{{d.name}}
+      </div>
+       </a>
+   <div id="printableArea" >
+      <div id="collapse{{d.id}}" class="collapse" data-bs-parent="#accordion">
+        <div class="card-body">
+         
+         <table align="center" class="table table-bordered">
+          <tr >
+            <td ><b> User Name:</b>  </td>
+        <td>{{d.name}}</td>
+          </tr>
+          <tr >
+            <td ><b> Email Id:</b>  </td>
+        <td>{{d.emailid}}</td>
+          </tr>
+          <tr >
+            <td ><b>Mobile Number:</b>  </td>
+        <td>{{d.mobilenumber}}</td>
+          </tr>
+          <tr >
+            <td ><b>Designation:</b>  </td>
+        <td>{{d.designation}}</td>
+          </tr>
+        
+         </table>
+        </div>
+      </div>
+    </div>
+</div>    
+ {% endfor %}
+</div></div>
+ <table align="center">
+
+
+
+  <tr>
+    <td>
+  <div class="input-group">
+
+        {%if data.has_previous %}
+
+       <form name="frm" method="post">
+       <input type="hidden" name="page" value="{{data.previous_page_number}}" >   
+       <input type="submit" name="btnsubmit" value="<" style="font-size:10px;" class="btn btn-primary"> 
+       <input type="hidden" name="search" value="{{search}}">  
+       <input type="hidden" name="fieldname" value="{{fieldname}}">    
+       <input type="hidden" name="instituteid" value="{{instituteid}}">  
+         
+
+        {% csrf_token %}
+          </form>  
+        {% endif %}
+        &emsp;
+        <span>{{data.number}}</span> 
+        &emsp;
+        {%if data.has_next %} 
+       <form name="frm" method="post">
+         <input type="hidden" name="page" value="{{data.next_page_number}}">   
+         <input type="submit" name="btnsubmit" value=">"  style="font-size:10px;" class="btn btn-primary">  
+        <input type="hidden" name="search" value="{{search}}">  
+       <input type="hidden" name="fieldname" value="{{fieldname}}">  
+       <input type="hidden" name="instituteid" value="{{instituteid}}">  
+        
+          {% csrf_token %}
+          </form>  
+        {% endif %}
+    </div>
+  </td>
+  </tr>
+  </table> 
+
+
+{% include "design/last.html" %}
+
+</html>

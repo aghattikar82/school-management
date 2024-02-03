@@ -1,0 +1,91 @@
+<!DOCTYPE html><html>
+<head>
+   {% include 'design/head.html' %}
+  <title>Book List</title>
+</head>
+<body>
+   {% include 'design/librarymid.html' %}
+    <h2>Books Data</h2>
+<form autocomplete="off" name="searchrecord" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">
+  <span class="col-2">
+		</span>
+		<span class="col-2">
+			<select name="ddlfield" required class="form-select">
+				<option value="">Search By </option>
+				<option value="bookname">Book Name</option>
+				<option value="bookisbn">Book ISBN Number</option>
+				<option value="publicationyear">Publication Year</option>
+				
+			</select>
+
+		</span>
+		<span class="col-5">
+			<input type="text" name="txtsearch" placeholder="Enter Book Name/Book ISBN Number / Publication Year" required class="form-control">
+		</span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">			
+		
+		
+	</div>
+</div>
+{% csrf_token %}
+</form>
+</body>
+{% for i in booklist %}
+<div class="container mt-3"  >
+  <div id="accordion">
+    <div class="card">
+    	<a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse{{d.id}}">
+     
+      <div class="card-header">
+         <b>&nbsp; Subject: </b>{{d.subject}}&nbsp;&nbsp; <b>Leave Date: </b>{{d.leavedate}}
+      </div>
+       </a>
+  <div id="printableArea" >
+      <div id="collapse{{d.id}}" class="collapse" data-bs-parent="#accordion">
+        <div class="card-body">
+         
+         <table align="center" class="table table-bordered">
+         	<tr >
+         		<td ><b>Reason For leave:</b></td>
+         		<td ><b>End Date </b>  </td>
+				
+				
+         	</tr>
+         	<tr >
+         		<td>{{d.text}}</td>
+         		<td>{{d.end_date}}</td>
+         	</tr>
+         
+         	
+        
+         </table>
+
+
+        </div>
+        <center>
+ 		<form name="frmaprrove" method="post">
+					<input type="submit" name="btnsubmit" value="Approve" class="btn btn-success">
+					<input type="submit" name="btnsubmit" value="Reject" class="btn btn-danger">
+					
+				</form></center>    
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+</div>
+
+
+
+
+</form>
+
+
+{% endfor %}
+       {% include 'design/last.html' %}
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+    <title>Head</title>
+</head>
+<body>
+    {% include "design/operatormid.html" %}
+    <h3 align="left">Head</h3>
+<form name="frmaddreligion" method="post" autocomplete="off"  >
+<div class="container-fluid mt-3" align="center" >
+    <div class="col-lg-6" style="text-align:left;">
+            <label for="head"><font color="red" >*</font>Head</label>
+            <input type="text" name="head" class="form-control" autofocus="on" required placeholder="Enter Head ">
+    </div>
+    <div class="col-lg-6" style="text-align:left;">
+            <label for="select"><font color="red" >*</font>Select Liability</label>
+        
+            <select name="select_liabilities" required class="form-select">
+                    
+                        <option  value="">Select Liability</option>
+                        <option value="1">Income</option>
+                        <option value="2">Expense</option>
+            </select>
+            
+    </div>
+
+    <p></p>
+    <div class="col-lg-6">
+        <input type="submit" name="txtsubmit" value="Submit" class="btn btn-success">
+        <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+    </div> 
+    
+    
+</div>   
+ {% csrf_token %}
+ </form>
+
+</div>
+
+    {% include "design/last.html" %}
+</body>
+</html>

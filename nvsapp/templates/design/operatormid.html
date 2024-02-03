@@ -1,0 +1,88 @@
+{% load static %} <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center">
+      <a href="#" class="logo me-auto">
+               <img style="border-radius:5px;height:50px;width:60px" src="{% static 'assets/img/patshalalogo.png' %}" alt="image"> 
+               <font color="white" size="+1"><b>E-Patshala</b></font>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+<li><a href="operatorhome">Dashboard</a></li>
+<li class="dropdown">
+   <a href="#"><span>Masters</span><i class="bi bi-chevron-down"></i></a>
+      <ul>
+         <li><a href="operatormstassesment">Assesment Master</a></li>
+         <li><a href="operatoraddclass">Class Master</a></li>
+         <li><a href="operatorfeestemplate">Fees Template</a></li>
+         <li><a href="operatoraddsection">Section Master</a></li>
+         <li><a href="operatormstsubject">Subject Master</a></li>
+
+      </ul>
+</li>
+<li class="dropdown">
+   <a href="#"><span>Register</span><i class="bi bi-chevron-down"></i></a>
+      <ul>
+         <li><a href="operatorheads">Heads</a></li>
+         <li><a href="operatoruserregister">Staff</a></li>
+         <li><a href="operatorstudentregister">Student</a></li>
+         <li><a href="operatorgenerateidcard">Generate ID</a></li>
+      </ul>
+</li>
+
+
+<li class="dropdown">
+   <a href="#"><span>Mapping</span><i class="bi bi-chevron-down"></i></a>
+      <ul>
+
+         <li><a href="operatorsubjectstaffclassmapping">Subject Staff Mapping</a></li>
+         <li><a href="operatorlanguagemapping">Language Mapping</a></li>
+
+</ul></li>
+
+<li class="dropdown">
+   <a href="#"><span>Operations</span><i class="bi bi-chevron-down"></i></a>
+      <ul>
+
+<li ><a href="operatorcalender"><span>Calender of Events</span></a></li>
+<li ><a href="operatornoticecircular"><span>Circular</span></a></li>
+<li ><a href="operatortimetable"><span>Time Table</span></a></li>
+</ul>
+</li>
+<li><a href="operatorexpensehead">Expenses</a></li>
+<li class="dropdown">
+   <a href="#"><span>Reports</span><i class="bi bi-chevron-down"></i></a>
+      <ul>
+         <li><a href="operatorassessmentdisplay">Assesment</a></li>
+         <li><a href="operatorclassesdisplay">Classes</a></li>
+         <li><a href="operatorfeessearch">Fees Template</a></li>      
+         <li><a href="operatorlanguagemappingdisplay">Language Mapping</a></li>
+         <li><a href="operatorfacultiesdisplay">Faculties</a></li>
+         <li><a href="operatorstudentdisplay">Students</a></li>
+         <li><a href="operatorsectiondisplay">Section</a></li>
+         <li><a href="operatorsubjectsdisplay">Subjects</a></li>
+         <li><a href="operatorsubstaffmapdisplay">Subjects Staff Mapping</a></li>
+         <li><a href="operatortimetabledisplay">Time Table</a></li>
+      </ul>
+</li>
+<li class="dropdown"><a href="#"><span>Settings</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="operatorchangepassword">Password</a></li>
+             </ul>
+          </li>
+          <li><a  href="../logout">Logout</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="form-control">
+
+    {% include 'design/msg.html' %}

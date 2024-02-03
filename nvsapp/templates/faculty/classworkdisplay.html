@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Class Work Display </title>
+</head>
+<body>
+  {% include "design/facultymid.html" %}
+<h2>Class Work Details</h2>
+   <form autocomplete="off"  method="POST">
+       <div class="container-fluid mt-3" >
+           
+          <div class="row">
+            <div class="col-lg-4">
+              <input type="date" name="textdate" class="form-control"  autofocus="on" required>  
+            </div>
+                       
+   
+        <div class="col-lg-6">
+            <div class="input-group mb-3" align="center">
+             <select name="class" autofocus="on" required class="form-select select2-hidden-accessible">
+                <option>Select Class Section </option>
+                {% for i in sectiondata %}
+                <option value="{{i.id}}">{{i.Addclass}} {{i.section}} ({{i.subject}})</option>
+                {%endfor%}
+             </select>
+           <input type="submit" name="btnsubmit" value="Class Work " class="btn btn-info">
+         </div>
+       </div>
+     </div>
+</div>
+         
+ 
+    {% csrf_token %}
+  </form>
+  
+  {% if classworkdata %}
+  <div class="table-responsive" align="center">
+    <div class="col-lg-4 col-sm-4 col-md-4" ></div>
+    <div class="col-lg-12 col-sm-8 col-md-8" >
+    <table class="table table-bordered" border="2" >
+                 <th>Class</th><td> {{class}} {{section}} </td>
+                 <th>Subject</th><td> {{subject}} </td>
+
+                   
+</table>
+  </div>
+  </div>
+   <form name="frm" method="post">
+  
+                        <table border="2" align="center" class="table table-bordered">
+                            <thead>
+                                  {% for d in classworkdata %}  
+                                  </tr>
+
+                                    <td><b>Class Date:{{d.classconducted_date}}</b><br/>{{d.workdetails}}
+
+                                    </td>
+                                  </tr>
+                                   </thead>
+                                 {% endfor %}
+                                  </table>
+
+ 
+ {% endif %}
+
+ {% include "design/last.html" %}
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+  <!DOCTYPE html>
+<html>
+<head>
+  {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fees Search Day Wise</title>
+</head>
+<body>
+  {% include "design/accountantmid.html" %} 
+<h3>Challan Report Day Wise</h3>
+<form autocomplete="off" name="frmfeedetails" method="POST"  >
+<table align="center">
+  <tr>
+    <td>
+        <label><b><font color="red">*</font>Student ID</b></label>
+        <input autofocus="on" type="number" min="1"  name="txtstudentid"  placeholder="Enter Student ID" required class="form-control">
+    </td>
+    <td><br/>
+          <input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data"> 
+    </td>
+  </tr>
+</table>
+
+{% csrf_token %}
+</form>
+{% if challanpaiddata %}
+
+    <div class="container mt-3"  >
+  <div id="accordion">
+
+
+    <div class="card">
+  <div id="printableArea" >
+         <table align="center" class="table table-bordered">
+        <tr>
+          <th>Challan No.</th>
+          <th>Student Id</th>
+          <th>Student Name</th>
+          <th>Class-Section</th>
+          <th>Fees Heading</th>
+          <th>Status</th>
+          <th>Amount</th>
+          
+        </tr>
+      {% for cp in challanpaiddata %}
+          <tr>
+            <td>{{cp.id}}</td>
+            <td>{{cp.studentid_id}}</td>
+            <td>{{cp.studentid.studentname}} {{cp.studentid.fathername}} {{cp.studentid.surname}}</td>
+            <td>{{cp.studentid.chooseclass}} {{cp.studentid.section}}</td>
+            <td>{{cp.feestypeid.feestemplate}}-TERM {{cp.feestypeid.feesterm}}</td>
+            <td>{{cp.paymentstatus}}</td>
+            <td>{{cp.totalamounttopay}}</td>
+
+          </tr>
+{% endfor %}
+<tr>
+  <td colspan="6"><b>Total Challan Amount</b></td>
+  <td>{{challanpaiddataamount}}</td>
+</tr>
+         </table>
+        </div>   
+      </div>
+    </div>
+</div>
+</div>
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+{% include "design/last.html" %}
+
+</html>

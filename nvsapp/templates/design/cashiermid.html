@@ -1,0 +1,48 @@
+
+  <!-- ======= Header ======= -->
+  {% load static %}
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center">
+      <a href="#" class="logo me-auto">
+               <img style="border-radius:5px;height:50px;width:60px" src="{% static 'assets/img/patshalalogo.png' %}" alt="image"> 
+               <font color="white" size="+1"><b>E-Patshala</b></font>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+         <li><a href="cashierhome">Home</a></li>
+
+<li ><a href="cashiersearchchallan"><span>Fees Collection </span></a></li>
+
+<li class="dropdown">
+   <a href="#"><span>Fees Reports</span><i class="bi bi-chevron-down"></i></a>
+      <ul>
+         <li><a href="cashierdatewisefeescollection">Date Wise</a></li>
+         <li><a href="cashierstudentidwisefeescollection">Student Wise</a></li>
+         <li><a href="cashierviewinstituteexpectedcollection">Institution Wise</a></li>
+
+
+      </ul>
+</li>
+<li class="dropdown"><a href="#"><span>Settings</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="cashiersettingprofile">Profile</a></li>
+              <li><a href="cashiersettingpassword">Password</a></li>
+             </ul>
+          </li>
+          <li><a  href="../logout">Logout</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+<div class="form-control">
+      {% include 'design/msg.html' %}
+ 

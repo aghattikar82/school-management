@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dashboard</title>
+{% load static %}
+
+	{% include 'design/head.html' %}
+</head>
+<body>
+	
+	{% include 'design/librarymid.html' %}
+	<form name="countrecord" method="POST">
+		<center>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-lg-5 col-md-6 mt-2">
+					<a href="studentattendancedisplay"><button style="height:80px;font-size:20px" class="btn btn-success form-control"><b>Students<br> {{Sdatacount}}</b></button></a>
+					</div>
+					<div class="col-sm-6 col-lg-5 col-md-6 mt-2">
+						<a href=""><button style="height:80px;font-size:20px" class="btn btn-warning form-control"><b>Total Books<br> {{bookscount}}</b></button></a>
+					</div>
+					<div class="col-sm-6 col-lg-5 col-md-6 mt-2">
+						<a href="classworkdisplay"><button style="height:80px;font-size:20px" class="btn btn-info form-control"><b> Issued Books<br>{{issuedbookscount}}</b></button></a>
+					</div>
+					<div class="col-sm-6 col-lg-5 col-md-6 mt-2">
+						<a href="homeworkdisplay"><button style="height:80px;font-size:20px" class="btn btn-danger form-control"><b>Returned Books<br>{{returnbookscount}}</b></button></a>
+					</div>
+					
+				</div>
+		</center>
+			 {% csrf_token %}		
+	</form>
+	
+
+	{% include 'design/last.html' %}
+
+</body>
+</html>

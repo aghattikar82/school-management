@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Search Institutes </title>
+	<script type="text/javascript">
+		function ConfirmDelete() {
+    return confirm("Are Your Sure Want to Delete");
+     }
+
+
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
+	</script>
+
+
+</head>
+<body>
+	{% include "design/adminmid.html" %}	
+	
+<form autocomplete="off" name="searchrecord" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">	
+		<span class="col-4">
+			<select name="ddlfield" required class="form-select">
+				<option value="">Search By </option>
+				<option value="Instituteid">Institute  Id</option>
+				<option value="Institutename">institute Name</option>
+				
+			</select>
+
+		</span>
+		<span class="col-5">
+			<input type="text" name="txtsearch" placeholder="Enter Institute ID/Institute Name" required class="form-control">
+		</span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">			
+		
+		
+	</div>
+</div>
+
+{% csrf_token %}
+</form>
+</body>
+
+ {% for d in data %}
+
+ <div class="container mt-3"  >
+  <div id="accordion">
+    <div class="card">
+    	<a class="btn btn-info" data-bs-toggle="collapse" href="#collapse{{d.id}}">
+     
+      <div class="card-header">
+      	<table  width="100%">
+      		<tr>
+      			<td>Institute ID: </b>{{d.id}}</td>
+      			<td><b>Institute Name: </b>{{d.institutename}}</td>
+      		</tr>
+      	</table>
+      </div>
+       </a>
+  <div id="printableArea" >
+      <div id="collapse{{d.id}}" class="collapse" data-bs-parent="#accordion">
+        <div class="card-body">
+         
+         <table align="center" class="table table-bordered">
+         	<tr >
+         		<td ><b>Institute Name:</b>  </td>
+						<td>{{d.institutename}}</td>
+         	</tr>
+         	<tr >
+         		<td ><b>Mobile Number:</b>  </td>
+						<td>{{d.mobilenumber}}</td>
+         	</tr>
+         	<tr >
+         		<td ><b>Cash Opening Balance:</b>  </td>
+						<td>{{d.cashopeningbalance}}</td>
+         	</tr>
+         	<tr >
+         		<td ><b>Current Academic Year:</b>  </td>
+						<td>{{d.currentAyear}}</td>
+         	</tr>
+         	<tr >
+         		<td ><b>Complete Address:</b>  </td>
+						<td>{{d.address}}</td>
+         	</tr>
+         	
+        
+         </table>
+
+
+        </div>
+        <center>
+ 			 <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-info" />       
+ 		</center>    
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+</div>
+ {% endfor %}
+
+
+{% include "design/last.html" %}
+
+</html>

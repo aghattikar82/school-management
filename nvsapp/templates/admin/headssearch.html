@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Search Heads</title>
+	
+</head>
+                              <body>
+                                
+                              	{% include "design/adminmid.html" %}	
+
+                              <h2>Heads Report</h2>	
+
+                               {% if data %}
+                              <div class="container mt-3">
+                                <table class="table table-hover">
+                                  <thead>
+                                   <tr class="table-active">
+                                    <th>Heads Name </th>
+                                   </tr>
+                                </thead>
+                                 
+                                  <tbody>
+                                    {% for d in data.object_list %}
+                                    <tr class="table ">
+                                      <td>{{d.head}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                  </tbody>
+                                </table>
+                              </div>
+
+                             
+
+
+                            
+
+                                <table align="center">
+                                <tr>
+                                  <td>
+                                <div class="input-group">
+
+                                      {%if data.has_previous %}
+
+                                     <form name="frm" method="post">
+                                     <input type="submit" name="btnsubmit" value="<" style="font-size:10px;" class="btn btn-primary"> 
+                                     <input type="hidden" name="page" value="{{data.previous_page_number}}" >   
+                                     <input type="hidden" name="search" value="{{search}}">  
+                                     <input type="hidden" name="fieldname" value="{{fieldname}}">    
+                                     <input type="hidden" name="instituteid" value="{{instituteid}}">  
+                                       
+
+                                      {% csrf_token %}
+                                        </form>  
+                                      {% endif %}
+                                      &emsp;
+                                      <span>{{data.number}}</span> 
+                                      &emsp;
+                                      {%if data.has_next %} 
+                                     <form name="frm" method="post">
+                                       <input type="submit" name="btnsubmit" value=">"style="font-size:10px;" class="btn btn-primary">  
+                                       <input type="hidden" name="page" value="{{data.next_page_number}}">   
+                                      <input type="hidden" name="search" value="{{search}}">  
+                                     <input type="hidden" name="fieldname" value="{{fieldname}}">  
+                                     <input type="hidden" name="instituteid" value="{{instituteid}}">  
+                                      
+                                        {% csrf_token %}
+                                        </form>  
+                                      {% endif %}
+                                </td>
+                                </tr>
+                              </table> 
+                              </div>
+                                  {%endif%} 
+
+                              {% include "design/last.html" %}
+                              </body>
+                              </html>

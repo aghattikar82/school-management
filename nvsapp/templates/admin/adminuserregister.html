@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Register</title>
+            {% include 'design/head.html' %}
+</head>
+<body>
+     {% include 'design/adminmid.html' %}
+<form  id="userregister" method="post" autocomplete="off"  >
+   
+       <h3 align="left">New User</h3>
+           <div class="row">
+            <div class="col-lg-3"></div>
+             <div class="col-lg-6">
+                <div class="form-group">
+
+                  <font color="red">*</font><label for="Institutionname">Institution Name</label>
+                    <select  name="instituteid" required class="form-select select2-hidden-accessible"  autofocus="on"  aria-hidden="true">
+                        <option value="">Select Institution</option>
+                    {% for i in data %}
+                        <option value="{{i.id}}">{{i.institutename}}</option>
+                    {% endfor %}
+                    </select>
+                    
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                  <font color="red">*</font><label for="name">Full Name</label>
+                    <input type="text" name="name" id="name"  placeholder="Enter Your Name" required class="form-control"  >
+                </div>
+            </div>
+
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                     <font color="red">*</font> <label for="Mobile">Mobile No.</label>
+                    <input type="number" name="Mobile" id="Mobile" placeholder="Enter Mobile Number" required data-parsley-type="digits" data-parsley-minlength="10" data-parsley-maxlength="10" data-parsley-error-message="Valid mobile required." data-parsley-trigger="keyup" class="form-control" value="" autocomplete="off" fdprocessedid="673mmm">
+                </div>
+            </div>
+
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <font color="red">*</font> <label for="emailid">Email ID</label>
+                    <input type="email" name="emailid" id="emailid" placeholder="Enter Email ID" required    class="form-control" value="" autocomplete="off">
+                </div>
+            </div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+            <div class="form-group">
+                   <font color="red">*</font> <label for="designation">Designation</label>
+                    <select name="designation" id="designation" required class="form-select select2-hidden-accessible" data-select2-id="AYear"  aria-hidden="true">
+                        <option value="select Designation">Select Designation</option>
+                        {% for i in designation %}
+                        <option value="{{i.id}}">{{i.designationname}}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+       
+            <div class="col-lg-3"></div>
+       
+                <div class="form-group">
+                     <font color="red">*</font> <label for="Password">Password</label>
+                    <input type="password" name="Password" id="Password" placeholder="Enter Password" required=""  data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" value="" autocomplete="off" fdprocessedid="4d21a">
+                </div>
+            </div>
+            
+
+
+        <div class="form-group">
+            
+            <center>
+            <div class="col-sm-12 mt-3">
+            <input type="submit" id="submit" name="submit" value="Save User" class="btn btn-success" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off" fdprocessedid="ch7q2d">
+            <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+            </center>
+            </div>
+            
+        </div>
+         {% csrf_token %}
+    
+</form>
+    {% include 'design/last.html' %}
+</body>
+</html>

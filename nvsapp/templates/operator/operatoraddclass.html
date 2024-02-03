@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+        {% include 'design/head.html' %} 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add class</title>
+</head>
+<body>
+    {% include 'design/operatormid.html' %}
+       <h3 > Add class</h3>
+
+ <form  id="validate_form"method="post"  >
+   
+   
+           <div class="row">
+             <div class="col-sm-3"></div>
+             <div class="col-sm-6">
+                <div class="form-group">
+                  <font color="red">*</font> <b><label for="Add class">Add class </label></b>
+                    <input type="text" name="txtAddclass" id="Addclass" placeholder="Add Class Name  " required="" autofocus="on"  class="form-control" value="">
+                </div>
+           <p></p>
+
+        <div class="form-group">
+            <center>
+           <div class="col-sm-12">
+            
+            <input type="submit" id="submit" name="submit" value="Add class" class="btn btn-success" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off" fdprocessedid="ch7q2d">
+            <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+            </div>
+            </center>
+        </div>
+         {% csrf_token %}
+    
+</form>
+</div>
+    {% include 'design/last.html' %}
+
+</body>
+</html>

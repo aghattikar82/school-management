@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Student Home</title>
+    {% include 'design/head.html' %}
+</head>
+<body>
+    {% include 'design/studentmid.html' %}
+    
+    <form name="countrecord" method="POST">
+        <center>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3 mt-2">
+                        <a  href="studentattendancerecord" style="height:100px;font-size:20px"  class="btn btn-primary form-control"><br><b>Attendance</b></a>
+                    </div>
+                    <div class="col-sm-3 mt-2">
+                        <a href="studentacademics" style="height:100px;font-size:20px" class="btn btn-success form-control"><br><b>Assesment</b></a>
+                    </div>
+                    <div class="col-sm-3 mt-2">
+                        <a href="studentclasswork" style="height:100px;font-size:20px" class="btn btn-warning form-control"><br><b> Classwork</b></a>
+                    </div>
+                    <div class="col-sm-3 mt-2">
+                        <a href="studenthomework" style="height:100px;font-size:20px" class="btn btn-info form-control"><br><b>HomeWork</b></a>
+                    </div>
+                    
+                    <div class="col-sm-3 mt-2">
+                        <a href="studentnotice" style="height:100px;font-size:20px" class="btn btn-info form-control"><br><b>Circular</b></a>
+                    </div>
+                    <div class="col-sm-3 mt-2">
+                        <a href="studentfeedback" style="height:100px;font-size:20px" class="btn btn-warning form-control"><br><b>Feedback</b></a>
+                    </div>
+                    
+                    <div class="col-sm-3 mt-2">
+                        <a  href="#" style="height:100px;font-size:20px"  class="btn btn-success form-control"><br><b>Calender</b></a>
+                    </div>
+                    <div class="col-sm-3 mt-2">
+                        <a  href="studentprofile" style="height:100px;font-size:20px"  class="btn btn-primary form-control"><br><b> Profile</b></a>
+                    </div>
+            </div>
+            
+        </center>
+             {% csrf_token %}       
+    </form>
+   
+    {% include 'design/last.html' %}
+
+</body>
+</html>

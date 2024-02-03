@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Edit Subject Staff Class Mapping Display</title>
+	{% include "design/head.html" %}
+</head>
+<body>
+	{% include "design/operatormid.html" %}
+{% for d in data %}	
+<h2>Edit Subject Staff Class Mapping  Details</h2>
+	<form name="editclass" method="post">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-6">
+					<label for="name"><font color="red">*</font> Subject Staff Map  Id</label>
+					<input type="text" name="substaffmaptid" readonly value="{{d.id}}" class="form-control">
+
+					
+				</div>
+				<div class="col-lg-6">
+					<label for="name"><font color="red">*</font> Subject   Name</label>
+					<input type="hidden" name="txtsubjectid" value="{{d.subject_id}}">
+					<input type="text" name="txtsubjectname" value="{{d.subject}}"class="form-control">
+
+				</div>
+				
+			</div>
+			<p></p>
+			<div class="row">
+				<div class="col-lg-6">
+					<label for="name"><font color="red">*</font> Staff Name</label>
+					<input type="hidden" name="txtstaffid" value="{{d.staffid_id}}">
+
+					<input type="text" name="txtstaffname"  value="{{d.staffid}}" class="form-control">
+
+					
+				</div>
+				<div class="col-lg-6">
+					<label for="name"><font color="red">*</font> Class Name </label>
+					<input type="hidden" name="txtclassid" value="{{d.Addclass_id}}">
+					
+					<input type="text" name="txtclass" value="{{d.Addclass}}"class="form-control">
+
+				</div>
+				
+			</div>
+			<p></p>
+			<div class="row">
+				<div class="col-lg-12">
+					<label for="name"><font color="red">*</font> Section Name</label>
+					<input type="hidden" name="txtsectionid" value="{{d.section_id}}">
+					
+					<input type="text" name="txtsection" value="{{d.section}}"class="form-control">
+
+				</div>
+				
+			</div>
+			<br>
+			<div align="center">
+				<input type="submit" name="btnsubmit" value="Update" class="btn btn-success">
+				
+			</div>
+			
+		</div>
+		
+
+{% csrf_token %}
+	</form>
+
+{% endfor %}
+{% include "design/last.html" %}
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript">
+    function ConfirmDelete() {
+    return confirm("Are Your Sure Want to Delete");
+     }
+
+
+        function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
+  </script>
+   
+  <title>Student Display Admin</title>
+</head>
+<body>
+    {% include "design/operatormid.html" %}
+<h2>Student Record Display  </h2>
+  <form autocomplete="off" name="searchrecord" method="POST"   >
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">
+                      <span class="col-" >
+                        <select required name="academicyearid"  autofocus="on" class="form-select ">
+                          <option value="">Select Academic Year</option>
+                          {% for d in  academicyeardata %}
+                          <option value="{{d.id}}">{{d.yeardate}}</option>
+                          {% endfor %}  
+                        </select>
+                      </span> 
+
+                      
+                      
+                        <span class="col-">
+                          <select required name="classid"  class="form-select">
+                            <option>Select Class </option>
+                            {% for d in classdata %}
+                            <option value="{{d.id}} "> {{d.className}} </option>
+                            {% endfor %}  
+                          </select>
+                        </span>
+
+                      <span class="col-">
+                        <select required name="sectionid"  class="form-select">
+                          <option>Select Section </option>
+                            {% for d in sectiondata %}
+                            <option value="{{d.id}} "> {{d.sectionName}} </option>
+                            {% endfor %}  
+                        </select>
+                      </span>
+
+                      <span class="col-">
+                          <select name="ddlfield" class="form-select">
+                            <option value="">Search By </option>
+                            <option value="studentid">Student Id</option>
+                            <option value="studentname">Student Name</option>
+                            <option value="studentmobilenumber">Student Mobile Number</option>
+                          </select>
+                        </span>
+
+                      <span>
+                        <input type="text" name="txtsearch" placeholder="Enter Sudent Id/Name/Mobile No"class="form-control">
+                      </span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">     
+    
+    
+</div>
+</span>
+</div>
+{% csrf_token %}
+
+</form>
+
+{% if data %}
+
+{% for d in data.object_list %}
+ <div class="container mt-3"  >
+  <div id="accordion">
+    <div class="card">
+      <a class="btn btn-info" data-bs-toggle="collapse" href="#collapse{{d.id}}">
+     
+      <div class="card-header">
+        <table width="100%;">
+          <tr>
+            <td><b>Student ID: </b>{{d.id}}</td>
+            <td> <b>Student Name: </b>{{d.studentname}}</td><td><b> Class :</b>{{d.chooseclass}}</td>
+
+          </tr>
+        </table>
+
+      </div>
+       </a>
+  <div id="printableArea" >
+      <div id="collapse{{d.id}}" class="collapse" data-bs-parent="#accordion">
+        <div class="card-body">
+         <ul class="list-group">
+          <table class="table">
+            <tr>
+              <td>
+         <li class="list-group-item"><b> Student Name :&nbsp; </b>{{d.studentname}}</li>
+           <li class="list-group-item"><b> Mother Name :</b>&nbsp;{{d.mothername}}</li>
+        
+                  
+          <li class="list-group-item"><b> Adminssion Year :&nbsp; </b>{{d.academicyear}}</li>
+          <li class="list-group-item"><b>Admission Date :</b>&nbsp; {{d.admissiondate}}</li>
+          <li class="list-group-item"><b>Section:  </b>&nbsp;{{d.section}}</li>
+          <li class="list-group-item"><b> Aadhar Number: </b>&nbsp;&nbsp;{{d.aadhaarno}}</li>
+          <li class="list-group-item"><b>Gender : </b>&nbsp;{{d.gender}} </li>
+          <li class="list-group-item"><b>Date of Birth :</b>&nbsp; {{d.dateofbirth}}</li>
+          <li class="list-group-item"><b>Category: </b>&nbsp;{{d.category}}</li>
+          <li class="list-group-item"><b>Religion :</b>&nbsp;  {{d.religion}}</li>
+          <li class="list-group-item"><b>Caste  </b>&nbsp;{{d.caste}}</li>
+          <li class="list-group-item"><b> Subcaste:&nbsp; </b>{{d.subcaste}}</li>
+          <li class="list-group-item"><b>Nationality :&nbsp; </b>{{d.nationality}} </li>
+          <li class="list-group-item"><b>Address :</b>&nbsp; {{d.address}}</li>
+          <li class="list-group-item"><b> Last School Name:</b>&nbsp;{{d.lastschool}}</li>
+          <li class="list-group-item"><b>TC No:</b>&nbsp;{{d.tcno}}</li>
+       
+         
+          </td>
+              <td>
+         <li class="list-group-item"><b>Father Name : </b>&nbsp;{{d.fathername}} </li>
+           <li class="list-group-item"><b> Sur Name :</b>&nbsp;{{d.surname}}</li>
+        <li class="list-group-item"><b>Admission Number:&nbsp; </b>{{d.admissionno}} </li>
+          <li class="list-group-item"><b>Class: </b>&nbsp;{{d.chooseclass}}</li>
+        
+           <li class="list-group-item"><b>Roll Number: </b>&nbsp;{{d.rollno}}</li>
+         
+         
+          <li class="list-group-item"><b>State: </b>&nbsp;{{d.state}}</li>
+          <li class="list-group-item"><b>Mobile Numner:  </b>&nbsp;{{d.mobileno}}</li>
+          <li class="list-group-item"><b>Phone Number </b>&nbsp;{{d.phoneno}}</li>
+          <li class="list-group-item"><b> Total Fees  : </b>&nbsp;&nbsp;{{d.amount}}</li>
+          
+          <li class="list-group-item"><b>Father Education :</b>&nbsp; {{d.fathereducation}}</li>
+          <li class="list-group-item"><b>Father Designation:</b>&nbsp;  {{d.fatherdesignation}}</li>
+          
+        <li class="list-group-item"><b> Mother Education :</b>&nbsp;{{d.mothereducation}}</li>
+        <li class="list-group-item"><b> Mother Occupation: </b>&nbsp;{{d.motherdesignation}}</li>
+        
+        <li class="list-group-item"><b> Mother Tongue: </b>&nbsp;{{d.mothertongue}}</li>
+        <li class="list-group-item"><b>Number Of Dependents: </b>&nbsp;{{d.dependents}}</li>
+        <li class="list-group-item"><b>Annual Income :</b>&nbsp;{{d.annualincome}}</li>
+       
+              </td>
+            </tr>
+          </table>
+
+        </ul>
+
+        </div>
+         <center>
+       <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-info" />       
+    </center>    
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+</div>
+ {% endfor %}
+<br/>
+<table align="center">
+  <tr>
+    <td>
+  <div class="input-group">
+
+        {%if data.has_previous %} 
+       <form name="frm" method="post">
+       <input type="hidden" name="page" value="{{data.previous_page_number}}" >   
+       <input type="submit" name="btnsubmit" value="<" style="font-size:10px;" class="btn btn-primary"> 
+       <input type="hidden" name="search" value="{{search}}">  
+       <input type="hidden" name="fieldname" value="{{fieldname}}">  
+       <input type="hidden" name="academicyearid" value="{{academicyearid}}">  
+       <input type="hidden" name="instituteid" value="{{instituteid}}">  
+       <input type="hidden" name="classid" value="{{classid}}"> 
+        <input type="hidden" name="sectionid" value="{{sectionid}}">    
+
+        {% csrf_token %}
+          </form>  
+        {% endif %}
+        &emsp;
+        <span>{{data.number}}</span> 
+        &emsp;
+        {%if data.has_next %} 
+       <form name="frm" method="post">
+         <input type="hidden" name="page" value="{{data.next_page_number}}">   
+         <input type="submit" name="btnsubmit" value=">"  style="font-size:10px;" class="btn btn-primary">  
+        <input type="hidden" name="search" value="{{search}}">  
+       <input type="hidden" name="fieldname" value="{{fieldname}}">  
+       <input type="hidden" name="academicyearid" value="{{academicyearid}}">  
+       <input type="hidden" name="instituteid" value="{{instituteid}}">  
+       <input type="hidden" name="classid" value="{{classid}}"> 
+        <input type="hidden" name="sectionid" value="{{sectionid}}">  
+          {% csrf_token %}
+          </form>  
+        {% endif %}
+  </div>
+  </td>
+  </tr>
+</table>
+   {%endif%}
+
+{% include "design/last.html" %}
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+  <!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fees Record</title>
+</head>
+<body>
+    {% include "design/accountantmid.html" %}   
+<h3>Fees Report Student Wise</h3>
+<center>
+
+ <div class="container-fluid" >
+<div class="row">
+  <div class="col-lg-12">
+<form autocomplete="off" name="frmfeedetails" method="POST"  >
+  <div class="input-group" align="center">  
+        <span class="col-5">
+            <input type="text" name="txtsearch" autofocus="on"  class="form-control" placeholder="Enter Student Id" required>
+        </span>
+    <input type="hidden" name="txtoperation"  value="1">      
+    <input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">            
+        
+        
+    </div>
+
+{% csrf_token %}
+
+</form>
+  </div>
+</div>
+</div>  
+
+{% if data %}
+</body>
+ {% for d in data %}
+
+<table class="table">
+  <tr>
+    <th>Receipt Id</th>
+    <th>Paid on</th>
+    <th>Amount Paid</th>
+    <th>Payment Mode</th>
+    <th>Transcation Details</th>
+
+  </tr>
+{%for sfd in studentfeesdetails%}
+  <tr>
+    <td>{{sfd.id}}</td>
+    <td>{{sfd.createdon}}</td>
+    <td>{{sfd.amountpaid}}</td>
+    <td>{{sfd.ddlpaymentmode}}</td>
+    <td>{{sfd.transactiondetials}}</td>
+
+  </tr>
+
+{%endfor%}
+</table>
+    
+ {% endfor %}
+ {% endif %}
+
+{% include "design/last.html" %}
+
+</html>

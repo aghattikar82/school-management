@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    {% include "design/head.html" %}
+    <title>TimeTable Display</title>
+        <script type="text/javascript">
+        function ConfirmDelete() {
+    return confirm("Are Your Sure Want to Delete");
+     }
+
+
+        function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
+    </script>
+</head>
+<body>
+    {% include "design/operatormid.html" %}
+            <h3 align="left">Time Table Display</h3>
+<center>
+<form name="frmtimetableschedule" method="post" autocomplete="off">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 input-group">
+                    <select name="class" autofocus="on" id="class" required  class="form-select" >
+                       <option value="">Select Class</option>
+                        {% for c in classdata %}
+                        <option value="{{c.id}}">{{c.className}}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="section" id="section" required class="form-select" >
+                        <option value="">Select Section</option>
+                        {% for c in sectiondata %}
+                        <option value="{{c.id}}">{{c.sectionName}}</option>
+                        {% endfor %}
+                    </select>
+            <input type="submit" class="btn btn-success" name="btnsubmit" value="Display TimeTable">
+    </div> 
+</div>
+
+</div>
+     {% csrf_token %}
+</form>
+</center>
+{% if timetabledata %}
+
+  <div id="printableArea" >
+<form name="frmtimetableschedule" method="post" autocomplete="off">
+        <input type="hidden" name="ddlclassid" value="{{ddlclasses}}">
+        <input type="hidden" name="ddlsectionid" value="{{ddlsections}}">
+                <table class="table table-bordered mt-3">
+                   <tr>
+                       <td><center><b>Class</b>: {{classname}} {{sectioname}}</td>
+                   </tr>
+               </table> 
+{% for d in timetabledata %}
+
+<table class="table table-bordered">
+    <tr>
+        <th></th>
+        <th style="font-size: 12px;"><center>Period-1<br/>(9:00 AM to 9:50 AM)</center></th>
+        <th style="font-size: 12px;"><center>Period-2<br/>(9:50 AM to 10:40 AM)</center></th>
+        <th style="font-size: 12px;"></th>
+        <th style="font-size: 12px;"><center>Period-3<br/>(10:50 AM to 11:40 AM)</center></th>
+        <th style="font-size: 12px;"><center>Period-4<br/>(11:40 AM to 12:30 PM)</center></th>
+        <th></th>
+        <th style="font-size: 12px;"><center>Period-5<br/>(01:00 PM to 01:50 PM)</center></th>
+        <th style="font-size: 12px;"><center>Period-6<br/>(01:50 PM to 02:40 PM)</center></th>
+        <th style="font-size: 12px;"><center>Period-7<br/>(02:40 PM to 03:30 PM)</center></th>
+
+    </tr>
+        <tr>
+            <th>Monday</th>
+            <td><center>
+                {% for s in subjectstaffmap %}
+                    {%if d.mp1_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>
+                {% for s in subjectstaffmap %}
+                    {%if d.mp2_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td rowspan="7"><b><center>S<br/>h<br/>o<br/>r<br/>t<br/><br/> B<br/>r<br/>e<br/>a<br/>k<br/></center></b></td>
+            <td><center>
+                {% for s in subjectstaffmap %}
+                    {%if d.mp3_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>
+                {% for s in subjectstaffmap %}
+                    {%if d.mp4_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+           <td rowspan="7" ><center><b>  L<br/>u<br/>n<br/>c<br/>h<br/><br/> B<br/>r<br/>e<br/>a<br/>k</b></center></td>
+            <td><center>
+                {% for s in subjectstaffmap %}
+                    {%if d.mp5_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>
+                {% for s in subjectstaffmap %}
+                    {%if d.mp6_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>
+                {% for s in subjectstaffmap %}
+                    {%if d.mp7_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+        </tr>
+        <tr>
+            <th>Tuesday</th>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.tup1_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.tup2_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.tup3_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.tup4_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.tup5_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.tup6_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.tup7_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+
+        </tr>
+        <tr>
+            <th>Wednesday</th>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.wp1_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.wp2_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.wp3_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.wp4_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.wp5_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.wp6_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.wp7_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+
+</tr>
+<tr>
+    <th>Thursday</th>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.thp1_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.thp2_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.thp3_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.thp4_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.thp5_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.thp6_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.thp7_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+
+        </tr>
+        <tr>
+            <th>Friday</th>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.fp1_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.fp2_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.fp3_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.fp4_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.fp5_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.fp6_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.fp7_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+
+        </tr>
+        <tr>
+            <th>Saturday</th>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.sap1_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.sap2_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.sap3_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td><center>            
+                {% for s in subjectstaffmap %}
+                    {%if d.sap4_id == s.id %}
+                        <b>{{s.subject}}</b><br/>({{s.staffid}})
+                    {%endif%}
+                {%endfor%}
+            </td>
+            <td colspan="3"><center> <b>School Off</b></center></td>
+
+        </tr>
+</table>        
+{%endfor%}
+   
+ {% csrf_token %}
+ </form>
+</div>
+ {%endif%}
+          {% include "design/last.html" %}
+</body>
+</html>

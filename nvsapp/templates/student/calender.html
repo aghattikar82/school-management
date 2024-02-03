@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include 'design/head.html' %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+    <title>Calender</title>
+</head>
+<body>
+    {% include 'design/operatormid.html' %}
+    <div align="center">
+        <h2>Event Dates</h2>
+        
+    </div>
+
+    {{msg}}
+<div class="conainer mt-3"> 
+    <form method="POST" autocomplete="off">
+            <div class="row">
+                <div class="col-lg-6 ">
+                    <font color="red">*</font> <b> <label >Class </b> </label>
+                        <select class="form-select"> 
+                            <option>class </option>
+                            {% for d in datas %}
+                            <option value=" {{d.className}} "> {{d.className}} </option>
+                              {%endfor%}
+                         </select>
+                </div>
+
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <font color="red">*</font> <b> <label >Section </b> </label>
+                    <select class="form-select">
+                        <option>Section </option>
+                        {%for d in data %}
+                        <option value="{{d.sectionName}}"> {{d.sectionName}} </option>
+                          {%endfor%}
+                    </select>
+                </div>
+
+        
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <font color="red">*</font> <b> <label >Events </b> </label>
+                <select  name="txtevent"  class="form-select">
+                    <option>Categary </option>
+                    <option>Working </option>
+                    <option>Holiday </option>
+                    <option>Festival </option>
+                    <option>Sportes </option>
+                </select>
+            
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                    <font color="red">*</font> <b> <label >Event Date</b> </label>
+                    <input type="text" name="date" id="date" autofocus="" placeholder="" required=""   class="form-control" value="" autocomplete="off" >
+                </div>
+            </div>
+
+
+            <p></p>
+            <div align="center">
+            <input type="submit" class="btn btn-info" name="btnsubmit" value="Save">
+             <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+            </div>
+        
+    {% include 'design/last.html' %}
+        {% csrf_token %}
+    </form>
+    </div>
+</body>
+</html>

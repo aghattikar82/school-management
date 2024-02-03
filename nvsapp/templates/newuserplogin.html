@@ -1,0 +1,62 @@
+  {% load static %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Student Digital Diary | Login Form</title>
+
+{%  include "design/head.html" %}
+</head>
+<body oncontextmenu="return false;" >
+
+{%  include "design/mid.html" %}
+
+
+<div class="container-fluid">
+<h2>Student Authentication</h2>
+
+<div class="row">
+
+      <div class="col-lg-3 col-sm-0 col-md-0">
+      </div>
+
+   <div class="col-lg-6 col-sm-12 col-md-12">
+<form name="form1" method="post" class="form-control"  autocomplete="off"  >
+      <input type="hidden" name="OPCODE" value="CHECKLOGIN">
+      <center>
+                  <img style="height:100px" src="{% static 'assets/img/patshalalogo.png' %}" />      
+      </center>
+      <div class="container-fluid">
+            <div class="row">
+                  <div class="col-lg-12 col-sm-12 col-md-12">
+                        <font color="red">*</font>Mobile Number: 
+                              <input type="number" name="txtmobilenumber" class="form-control" placeholder="Enter registered mobile number"  autofocus="ON" autocomplete="off" required >
+                  </div>   
+            </div>
+            <div class="row">
+                  <div class="col-lg-12 col-sm-12 col-md-12">
+                  <br/>
+                        <font color="red">*</font>Password:
+                        <input  type="password" name="txtpassword" class="form-control" placeholder="Enter password" maxlength="20"   AUTOFOCUS="ON" AUTOCOMPLETE="OFF" REQUIRED >
+                  </div>
+            </div>
+            <div class="row">
+                  <div class="col-lg-12 col-sm-12 col-md-12"><br/>
+                        <center>
+                        <button  type="submit"   class="btn btn-success">Signin</button>
+                        <input type="reset" name="btnreset" value="Cancel" class="btn btn-warning">
+                        <br/><br/>
+                        Recover Password?<a href="resetpassword"> <font color="blue">Click here</font></font></a> 
+                        <br/><br/>
+                        </center>
+                  </div>
+            </div>
+
+</div>
+{% csrf_token %}
+</form>
+</div>
+
+{%  include "design/last.html" %}
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+        {% include 'design/head.html' %}
+
+    <title>Assesments Marks</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        function getSubject(){
+
+            subjectid=document.getElementById("className").value;
+        var csrf=$("input[name=csrfmiddlewaretoken]").val();
+            $.ajax({
+                type:"POST",
+                url:"getclasssubject",
+                data:{
+                    "subjectid":subjectid,
+                    "csrfmiddlewaretoken":csrf,
+                },
+                dataType: 'json',
+                            
+                success:function(response)
+                {
+                    $("#subject").empty();
+                    var subjectlist="<option value=''> Select Subject</option>";
+                    for (var i in response.subjectdata)
+                    {
+                        subjectlist+="<option value='"+response.subjectdata[i].id+"'>"+response.subjectdata[i].subjectname+"</option>";
+
+                    }
+                    $("#subject").append(subjectlist);
+                }
+            });
+        };
+        
+
+    </script> 
+
+</head>
+<body>
+        {% include 'design/facultymid.html' %}
+
+<div class="form-control">     
+    <h3 class="mt-4">Assessment Marks</h3>
+    <form  id="validate_form" action="" method="post" enctype="multipart/form-data" >
+    <div class="input-group">
+                    <select name="assissmentname" id="assissmentname" autofocus="on" required class="form-select" >
+                        <option>Select Assessment</option>
+                        {% for a in assessment %}
+                        <option value="{{a.id}}">{{a.assesment_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="className" id="className" required  class="form-select" >
+                        <option>Select Class</option>
+                        {% for c in classsection %}
+                        <option value="{{c.subject_id}}_{{c.Addclass_id}}_{{c.section_id}}">{{c.Addclass}} {{c.section}} ({{c.subject}})</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" class="btn btn-success" name="btnsubmit" value="Get Student">
+    </div>
+ {% csrf_token %}
+</form>
+            {% if student %}
+
+    <form name="frmmarks" method="post">
+                <input type="hidden" name="ddlassesmentid" value="{{asssementtype}}">
+                <input type="hidden" name="ddlclassid" value="{{ddlclasses}}">
+                <input type="hidden" name="ddlsectionid" value="{{ddlsectiones}}">
+                <input type="hidden" name="ddlsubjectid" value="{{ddlsubject}}">
+               <table class="table table-bordered">
+                   <tr>
+                       <td><b>Assesment Type</b></td>
+                       <td>{{assesmentname}}</td>
+                       <td><b>Class</b></td>
+                       <td>{{classname}} {{sectionname}}</td>
+                   </tr>
+                   <tr>
+                       <td><b>Subject</b></td>
+                       <td >{{subjectname}}</td>
+                        <td><b>Max Marks</b></td>
+                        <td>{{assesmentname.maximum_marks}}</td>
+                   </tr>
+
+               </table> 
+                <table class="table table-bordered mt-3">
+                    <tr>
+                        <th>Student Id</th>
+                        <th>Student Name</th>
+                        <th>Enter Marks Obtained</th>
+                    </tr>
+                    <tr>
+                        {% for s in student %}
+                        <td>
+                            {{ s.id }}
+                        <input type="hidden" name="studentid" class="form-control" required readonly value="{{s.id}}">
+                        </td>
+                        <td>
+                        {{ s.studentname }}
+                        </td>
+                        <td>
+                            <input type="number" required min="0" max="{{assesmentname.maximum_marks}}"  name="SMARKS{{s.id}}" class="form-control" placeholder="Enter Marks Obtained">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3" align="center">
+                                <div >
+        <div>
+            <input type="submit" id="submit" name="btnsubmit" value="Save Marks" class="btn btn-success mt-3" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off">
+            <input type="reset" name="btnreset" class="btn btn-warning mt-3" value="Cancel">
+        </div>
+    </div>
+
+                        </td>
+                    </tr>
+
+                </table> 
+       {%endif%}
+                                    
+     {% csrf_token %} 
+</form>
+
+</div>
+    {% include 'design/last.html' %}
+
+</body>
+</html>

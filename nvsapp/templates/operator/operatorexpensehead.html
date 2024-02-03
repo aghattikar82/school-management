@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+    <title>Expense Head</title>
+</head>
+<body>
+    {% include "design/operatormid.html" %}
+    <h3>Expense Head</h3>
+    <form name="frmexpensehead" method="post" autocomplete="off">
+            <div class="container-fluid mt-3" align="center" >
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="expensehead"><font color="red" >*</font>Expense Heads</label>
+                            <select name="expensehead" required class="form-select" autofocus="on">
+                                <option  value="">Select Expense Head</option>
+                                {% for h in heads  %}       
+                                        <option value="{{h.id}}">{{h.head}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paidto"><font color="red" >*</font>Paid To</label>
+                                <input type="text" name="paidto" class="form-control" autofocus="on" required placeholder="Paid To ">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paymentdate"><font color="red" >*</font>Payment Date</label>
+                                <input type="date" name="paymentdate" class="form-control" autofocus="on" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="amountpaid"><font color="red" >*</font>Amount Paid</label>
+                                <input type="number" name="amountpaid" class="form-control" autofocus="on" placeholder="Amount Paid" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paymentmode"><font color="red" >*</font>Payment Mode</label>
+                            <select name="paymentmode" required class="form-select">
+                                <option  value="">Select Payment Mode</option>
+                                <option value="1">CASH</option>
+                                <option value="2">NEFT</option>   
+                                <option value="3">RTGS</option>   
+                                <option value="4">UPI</option>   
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-6" style="text-align:left;">
+                            <label for="paymentdetails"><font color="red" >*</font>Payment Details</label>
+                            <textarea class="form-control" name="paymentdetails" placeholder="Payment Details"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <center>
+                <div class="col-lg-6">
+                    <input type="submit" name="txtexpense" value="Add Expense" class="btn btn-success">
+                    <input type="reset" name="Cancel" value="Cancel" class="btn btn-warning">
+                    
+                </div>
+            </center>
+
+        {% csrf_token %}
+    </form>
+</div>
+    {% include "design/last.html" %}
+</body>
+</html>

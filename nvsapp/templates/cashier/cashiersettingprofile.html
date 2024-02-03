@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dashboard</title>
+	{% load static %}
+
+{% include "design/head.html" %}
+	
+</head>
+<body>
+{% include "design/cashiermid.html" %}
+
+	<table class="table">
+		<tr>
+			<th>Class Name</th>
+			<th>Fees To Be Collected</th>
+			<th>Fees Collected</th>
+			<th>Pending Fees</th>
+		</tr>
+			{%for cl in ClassData%}	
+		{%for cfd in ClassFeesData%}
+			<tr>
+
+			<td>{{cl.className}}</td>
+				<td>{{cfd.totalfees}}</td>
+			</tr>
+		{%endfor%}
+			{%endfor%}
+
+
+	</table>
+
+
+{% include "design/last.html" %}  
+
+	
+</body>
+</html>

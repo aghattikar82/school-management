@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Attendance</title>
+	{% include "design/head.html" %}
+</head>
+<body>
+	{% include 'design/studentmid.html' %}
+	<form name="attendance" method="POST">
+	<h2>Attendance Details</h2>
+
+		<div class="container-fluid mt-3" >
+			<div class="row">
+				<div class="input-group mb-3" align="center">
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<select required autofocus="on" name="class" class="form-select">
+								<option value="">Select Class </option>
+							{% for d in classes %}
+								<option value="{{d.id}}">{{d.className}}</option>
+							{% endfor %}
+							</select>
+						</div>
+						<div class="col-lg-2 col-md-6 col-sm-6">
+							<input type="submit" name="btnsubmit" class="btn btn-info form-control value="Get Data">
+						</div>
+					<div class="col-lg-3 col-md-0 col-sm-0"></div>
+				</div>
+			</div>
+		</div>
+		{% csrf_token %}
+	</form>
+	
+	<form name="Assesment" method="POST" >
+		<table align="center" class="table table-bordered mt-3" style="width: 50%;">
+		{%if Attendance%}
+			<tr>
+				<th>Date</th>
+				<th>Attendance</th>
+			</tr>
+		{%endif%}
+		{%for d in Attendance%}
+			<tr>
+				<td>{{d.createdon}}</td>
+				<td>{{d.attendancestatus}}</td>
+			</tr>
+		{%endfor%}
+		</table>
+
+		
+	</form>
+	{% include 'design/last.html' %}
+</body>
+</html>

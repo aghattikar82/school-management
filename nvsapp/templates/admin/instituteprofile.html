@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Institute Profile</title>
+    {% include 'design/head.html' %}
+    
+</head>
+<body>
+    {% include 'design/adminmid.html' %}
+<div class="form-control">
+   
+    <form  enctype="multipart/form-data" id="validate_form" method="post" novalidate="">
+        <h3 class="mt-4 mb-4">Institution Profile</h3>
+  
+    <p class="text-danger"></p>
+    <div class="box">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="Trust"><font color="red">*</font>Name of Trust / Society</label>
+                        <input type="text" value="NUTAN VIDHYALAYA SOCIETY" readonly  name="Trust" id="Trust"  required="" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" placeholder="Name of the Trust / Society" autocomplete="off" fdprocessedid="8n8ix9">
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label for="Name"><font color="red">*</font>Institution Name</label>
+                        <input type="text" name="IName" id="IName" autofocus="on" placeholder="Enter Institution Profile" required="" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control"  autocomplete="off" fdprocessedid="z2detr">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="Code"><font color="red">*</font>Institution Code</label>
+                        <input type="text" name="Code" max="4"  id="Code" placeholder="Enter Institution Code" required data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control"  autocomplete="off" fdprocessedid="r409o">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="Phone"><font color="red">*</font>Phone / Mobile No.</label>
+                        <input type="number" name="Phone" id="Phone" placeholder="Enter Mobile Number" required="" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control"  autocomplete="off" fdprocessedid="r409o">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="CashOB"><font color="red">*</font>Cash Opening Balance</label>
+                        <input type="text" name="CashOB" id="CashOB" placeholder="" required="" data-parsley-type="number" data-parsley-error-message="Valid amount required." data-parsley-trigger="keyup" class="form-control" value="0.0000" autocomplete="off" fdprocessedid="oz9x0m">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label for="AYear"><font color="red">*</font>Current Academic Year</label>
+                    <select name="AYear" id="AYear" required="" class="form-select select2-hidden-accessible" data-select2-id="AYear" tabindex="-1" aria-hidden="true">
+                        <option value="2023-24" data-select2-id="2">2023-24</option><option value="2022-23">2022-23</option><option value="2021-22">2021-22</option><option value="2020-21">2020-21</option><option value="2019-20">2019-20</option><option value="2018-19">2018-19</option><option value="2017-18">2017-18</option>
+                    </select>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="Address"><font color="red">*</font>Complete Address</label>
+                        <textarea name="Address" id="Address" placeholder="Enter Complete Address" required="" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="FileName"><font color="red">*</font>Choose Logo (.jpg)</label>
+                        <input type="file" class="form-control" name="FileName" id="FileName" placeholder="" data-parsley-error-message="Document required." data-parsley-trigger="keyup" class="form-control-file form-control-sm" autocomplete="off">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <div class="form-group text-center">
+            <center>
+                <input type="submit" id="submit" name="submit" value="Update Profile" class="btn btn-success" data-parsley-error-message="Valid input required." placeholder="" autocomplete="off" fdprocessedid="5v0is">
+                <input type="reset" name="btnreset" class="btn btn-warning">
+            </center>
+        </div>
+    </div>
+    {% csrf_token %}
+</form>
+    
+      </div>
+    {% include 'design/last.html' %}
+</body>
+</html>

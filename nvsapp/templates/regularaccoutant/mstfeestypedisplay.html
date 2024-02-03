@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	
+	<title>Fees Type Display</title>
+</head>
+<body>
+	{% include "design/accountantmid.html" %}
+
+	<center><h2>Fees Type</h2></center>
+	<div style="height: 40px" align="center">
+			{{msg}}
+	</div>
+	<form name="frmdisplay" method="POST" >
+		<table border="1" class="table table-bordered" align="center" ">
+			<tr>
+				<th>Class</th>
+				<th>Caste</th>
+				<th>Fee Type</th>
+				<th>Fee for</th>
+				<th>Fees</th>
+			</tr>
+				{% for d in data %}
+			<tr>
+				<td>{{d.classes}}</td>
+				<td>{{d.caste}}</td>
+				<td>{{d.feetype}}</td>
+				<td>{{d.fee_for}}</td>
+				<td>{{d.fees}}</td>
+			</tr>
+				{%endfor%}
+		</table>
+		
+	</form>
+	{% include "design/last.html" %}
+</body>
+</html>

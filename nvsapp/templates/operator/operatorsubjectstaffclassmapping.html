@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<title>Subject Mapping</title>
+</head>
+<body>
+	{% include "design/operatormid.html" %}
+		<h3>Subject Mapping</h3>
+	<form name="frmsubjectstaffclassmapping" method="post" autocomplete="off">
+			<div class="container-fluid mt-3" align="center" >
+				
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="staffselect"><font color="red" >*</font>Staff</label>
+							<select name="select_staff" required class="form-select" autofocus="on">
+								<option  value="">Select Staff</option>
+								{% for s in staff  %}		
+										<option value="{{s.id}}">{{s.name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="subject"><font color="red" >*</font>Subject</label>
+							<select name="select_subject" required class="form-select">
+								<option  value="">Select Subject</option>
+							{% for c in subject %}
+									<option value="{{c.id}}">{{c.subjectname}}</option>
+							{% endfor %}	
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="class"><font color="red" >*</font>Class</label>
+							<select name="select_mclass" required class="form-select">
+								<option  value="">Select Class</option>
+							{% for c in mclass  %}
+									<option value="{{c.id}}">{{c.className}}</option>
+							{% endfor %}	
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="section"><font color="red" >*</font>Section</label>
+							<select name="select_section" required class="form-select">
+								<option  value="">Select Section</option>
+							{% for s in section  %}
+									<option value="{{s.id}}">{{s.sectionName}}</option>
+							{% endfor %}	
+							</select>
+						</div>
+					</div>
+				</div>
+<div class="row">
+					<div class="form-group">
+						<div class="col-lg-6" style="text-align:left;">
+							<label for="classteacher"><font color="red" >*</font>Is Class Teacher</label>
+							<select name="classteacher" required class="form-select" autofocus="on">
+								<option>Select Yes/No</option>
+								<option>Yes</option>
+								<option>No</option>
+							</select>
+						</div>
+					</div>
+				</div> 
+
+			</div>
+			<p></p>
+			<center>
+				<div class="col-lg-6">
+					<input type="submit" name="txtsubmit" value="Map Subject" class="btn btn-success">
+					<input type="reset" name="Cancel" value="Cancel" class="btn btn-warning">
+					
+				</div>
+			</center>
+
+		{% csrf_token %}
+	</form>
+</div>
+	{% include "design/last.html" %}
+</body>
+</html>

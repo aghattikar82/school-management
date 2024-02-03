@@ -1,0 +1,73 @@
+<!DOCTYPE html><html>
+<head>
+   {% include 'design/head.html' %}
+  <title>Return  Books</title>
+</head>
+<body>
+   {% include 'design/librarymid.html' %}
+    <h2>Return Book</h2>
+  <form autocomplete="off" name="searchrecord" method="POST"  >
+
+ <div class="container-fluid mt-3" >
+  <div class="input-group mb-3" align="center">
+  <span class="col-2">
+      
+    </span>
+    <span class="col-1">
+      
+    </span>
+    <span class="col-5">
+      <input type="text" name="txtsearch" placeholder="Enter Student Id " required class="form-control">
+    </span><input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">     
+    
+    
+  </div>
+</div>
+{% csrf_token %}
+</form>
+</body>
+{% for i in returndata %}
+<form name="frmissue" method="post" >
+       
+<table class="table table-bordered" align="center" border="1">
+         
+<tr><td><b>Student Name</b></td><td>{{i.studentname}}</td></tr>
+<tr><td><b>Mobile Number</b></td><td>{{i.mobileno}}</td></tr>
+<tr><td><b>Class </b></td><td>{{i.chooseclass}}</td></tr>
+<tr><td><b>Section</b></td><td>{{i.section}}</td></tr>
+
+            
+ <tr>
+  <td><b>Book ISBN Number</b></td>
+    <td>
+          
+              {% for b in bookdata  %}
+          
+              <input type="hidden" name="bookid" value="{{b.id}}">
+
+      {% endfor %}
+      <input type="hidden" name="studentid" value="{{i.id}}">
+ <input type="number" class="form-control" name="isbnnumber"  required placeholder= "Enter ISBN No."/>
+    </td>          
+  </tr>
+    <form>
+
+<tr>
+  <td colspan="2" align="center">
+            <input class="btn btn-warning" type="reset" name="btncancel" value="Cancel">
+
+            <input type="submit"  align="center" name="btnsubmit" class="btn btn-success" value="Return Book" >
+  </td>
+</tr>
+ 
+{% csrf_token %}
+             
+            <form>
+
+        </table>
+{% csrf_token %}
+      </form>
+{% endfor %}
+       {% include 'design/last.html' %}
+
+</html>

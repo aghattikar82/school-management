@@ -1,0 +1,137 @@
+  <!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Fees Record</title>
+<script type="text/javascript">
+  function displayfeees()
+  {
+      feesdata=document.getElementById("feestypeid").value.split("_");
+      document.getElementById("amountpaid").value=feesdata[1];
+      document.getElementById("feesmasterid").value=feesdata[0];
+
+  }
+</script>
+</head>
+<body>
+	{% include "design/accountantmid.html" %}	
+<h3>Search Student</h3>
+<center>
+
+ <div class="container-fluid" >
+<div class="row">
+  <div class="col-lg-12">
+<form autocomplete="off" name="frmfeedetails" method="POST"   >
+  <div class="input-group" align="center">	
+			<input type="text" name="txtsearch" autofocus="on"  class="form-control" placeholder="Enter Student Id" required>
+    <input type="hidden" name="txtoperation"  value="1">      
+    <input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">				
+	</div>
+
+{% csrf_token %}
+
+</form>
+  </div>
+</div>
+</div>  
+
+{% if data %}
+</body>
+      <form name="frm" action="createchallan" method="post">
+
+ {% for d in data %}
+
+<table class="table table-boarderd mt-3">
+  <tr><td><img static src="{{d.studentphoto}}" alt="Student Image"  height="100px" width="100px" ></td></tr>
+  <tr>
+    <td><b>Student ID: </b>{{d.id}}</td>
+    <td><b>Student Name: </b>{{d.studentname}} {{d.surname}}</td>
+    <td><b>Class: </b>{{d.chooseclass}} {{d.section}} Section</td>
+  </tr>
+
+  <tr>
+    <td><b>Category: </b>{{d.category}}</td>
+    <td><b>Mobile Number: </b>{{d.mobileno}}</td>
+    <td><b>Address: </b> {{d.address}}</td>
+  </tr>
+  <tr>
+    <td><b>Annual Fees: </b>Rs. {{totalfees}}</td>
+    <td><b><font color="green">Total Paid: Rs. {{amountpaid}}</font></b></td>
+    <td><b><font color="red">Balance Fees: Rs. {{balanceamount}}</font></b></td>
+  </tr>
+  <tr>
+    <td><b>Transportation : </b>{{d.busfacility}}</td>
+    <td><b>Hostel Facility : </b>{{d.hostelfacility}}</td>
+    <td><b>Discount Amount: </b>{{discountamt}} </td>
+  </tr>
+{%endfor%}
+
+  <tr>
+    <td><b>Fees Type:</b>
+    </td>
+
+    <td colspan="2">
+      <select required class="form-select" name="feestypeid" id="feestypeid" onchange="displayfeees()">
+        <option value="">Select Fees Type</option>
+        {%for ft in  feestypedata%}
+        <option value="{{ft.id}}_{{ft.fees}}">{{ft.academicyearid}}-{{ft.classid}}-{{ft.category}}-{{ft.feestemplate}}-{{ft.feesterm}}</option>
+
+        {%endfor%}
+</select>
+  </td>
+  </tr>
+
+
+  <tr>
+    <td><b>Amount To Pay:</b>
+    </td><td colspan="2">
+     <input type="number" readonly id="amountpaid"  min="1" max="{{balanceamount}}" pattern="[0-9]{1,10}" class="form-control" name="amountpaid" placeholder="Amount to Pay" required ></td>
+  </tr>
+
+
+</table>
+<table class="table">
+  <tr>
+    <th>Receipt Id</th>
+    <th>Paid on</th>
+    <th>Amount Paid</th>
+    <th>Payment Mode</th>
+    <th>Transcation Details</th>
+
+  </tr>
+{%for sfd in studentfeesdetails%}
+  <tr>
+    <td>{{sfd.id}}</td>
+    <td>{{sfd.createdon}}</td>
+    <td>{{sfd.amountpaid}}</td>
+    <td>{{sfd.ddlpaymentmode}}</td>
+    <td>{{sfd.transactiondetials}}</td>
+
+  </tr>
+
+{%endfor%}
+</table>
+ {% for d in data %}
+    <center>
+      <input type="hidden" name="txtoperation" class="btn btn-info" value="2">      
+       <input type="hidden" name="feesmasterid" id="feesmasterid" value="{{d.id}}">
+       <input type="hidden" name="studentinstituteid" value="{{studentinstituteid}}">
+ 			 <input type="hidden" name="sid" value="{{d.id}}">
+       <input type="hidden" name="classid" value="{{d.chooseclass_id}}">
+       <input type="hidden" name="sectionid" value="{{d.section_id}}">
+       <input type="hidden" name="studentname" value="{{d.studentname}} {{d.surname}}">
+       <input type="hidden" name="mobilenumber" value="{{d.mobilenumber}}">
+      <input name="classsection" type="hidden" value="{{d.chooseclass}} {{d.section}}">       
+       <input type="submit" value="Create Challan" name="btnsubmit" class="btn btn-success"/></a>       
+ 		</center> 
+    {% csrf_token %}
+ {% endfor %}
+  </form>   
+
+ {% endif %}
+
+{% include "design/last.html" %}
+
+</html>

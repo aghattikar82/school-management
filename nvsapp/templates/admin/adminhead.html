@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "design/head.html" %}
+	<title>Head</title>
+</head>
+<body>
+	{% include "design/adminmid.html" %}
+<form name="frmaddreligion" method="post" autocomplete="off"  >
+ 	<h3 align="left">Template Head</h3>
+ 	<input type="hidden"  name="select_liabilities" value="1">
+<div class="container-fluid mt-3" align="center" >
+	<div class="col-lg-6 mt-2" style="text-align:left;">
+			<label for="head"><font color="red" >*</font><b>Template Head</b></label>
+			<input autofocus ="on" type="text" name="head" class="form-control" required placeholder="Enter Fees Template ">
+	</div>
+	<p></p>
+	<div class="col-lg-6 mt-2" style="text-align:left;">
+			<label for="head"><font color="red" >*</font><b>Fees Category</b></label>
+			<select name="feescategory" class="form-select">
+				<option value="">Select Category</option>
+				{%for fc in  feescategory%}
+					<option value="{{fc.id}}">{{fc.category}}</option>
+				{%endfor%}
+				
+			</select>
+	</div>
+	<p></p>
+
+	<div class="col-lg-6">
+		<input type="submit" name="txtsubmit" value="Submit" class="btn btn-success">
+		<input type="reset" name="btncance" value="Reset" class="btn btn-warning">
+	
+	</div> 
+	
+	
+</div> 	 
+ {% csrf_token %}
+ </form>
+
+
+
+	{% include "design/last.html" %}
+</body>
+</html>

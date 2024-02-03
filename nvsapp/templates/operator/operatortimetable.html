@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+    <title>TimeTable Schedule</title>
+</head>
+<body>
+    {% include "design/operatormid.html" %}
+            <h3 align="left">Time Table</h3>
+<form name="frmtimetableschedule"  method="post" autocomplete="off">
+    <div class="box">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <font color="red">*</font><label for="class">Select Class</label>
+                    <select name="class" autofocus="on" id="class"  required  class="form-select" >
+                       <option>Select Class</option>
+                        {% for c in classdata %}
+                        <option value="{{c.id}}">{{c.className}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <font color="red">*</font><label for="section">Select Section</label>
+                    <select name="section" id="section"  required class="form-select" >
+                        <option >Select Section</option>
+                        {% for c in sectiondata %}
+                        <option value="{{c.id}}">{{c.sectionName}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3 mt-4">
+                <div class="form-group">
+            <input type="submit" class="btn btn-success" name="btnsubmit" value="Create TimeTable">
+        </div>
+    </div> 
+</div>
+</div>
+     {% csrf_token %}
+</form>
+{% if subjectdata %}
+<form name="frmtimetableschedule" method="post" autocomplete="off">
+
+     <form name="frmmarks" method="post">
+        <input type="hidden" name="classid" value="{{ddlclassid}}">
+            <input type="hidden" name="section" value="{{ddlsectionid}}">
+                <table class="table table-bordered mt-3">
+                   <tr>
+                       <td><b>Class : </b>{{ddlclasses}} {{ddlsectiones}}</td>
+                   </tr>
+               </table> 
+<table class="table table-bordered">
+    <tr><td></td><td>P1</td><td>P2</td><td>P3</td><td>P4</td><td>P5</td><td>P6</td><td>P7</td></tr>
+    <tr>
+        <td>Monday</td>
+        <td>
+            <select class="form-select" id="mp1" required name="mp1">
+                <option value="">Select Subject/Staff</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="mp2" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="mp3" >
+               <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="mp4" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="mp5"  >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="mp6"  >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="mp7"  >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+<tr>
+        <td>Tuesday</td>
+        <td>
+            <select class="form-select" required name="tup1"  >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="tup2" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="tup3" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="tup4" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="tup5" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="tup6" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="tup7" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+<tr>
+        <td>Wednesday</td>
+        <td>
+            <select class="form-select" required name="wp1" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="wp2" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="wp3" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="wp4" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="wp5" >
+               <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="wp6" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="wp7" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+<tr>
+        <td>Thursday</td>
+        <td>
+            <select class="form-select" required name="thp1" >
+               <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="thp2" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="thp3" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="thp4" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="thp5" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="thp6" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="thp7" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+<tr>
+        <td>Friday</td>
+        <td>
+            <select class="form-select" required name="fp1" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="fp2" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="fp3" >
+               <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="fp4" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="fp5" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="fp6" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="fp7" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+<tr>
+        <td>Saturday</td>
+        <td>
+            <select class="form-select" required name="sap1" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="sap2" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="sap3" >
+               <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+                <td>
+            <select class="form-select" required name="sap4" >
+                <option value="">Select Subject</option>
+                {% for s in subjectdata %}
+                <option value="{{s.id}}">{{s.subject}}({{s.staffid}})</option>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+</table>        
+    <td colspan="3" align="center">
+    <div class="colspan-2 mt-3" align="center">
+        <input type="submit" name="btnsubmit" value="Save TimeTable" class="btn btn-success">
+        <input type="reset" name="txtcancel" value="Cancel" class="btn btn-warning">
+    </div> 
+    </td>
+    {% endif %}
+ {% csrf_token %}
+ </form>
+
+    {% include "design/last.html" %}
+</body>
+</html>

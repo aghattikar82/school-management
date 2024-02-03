@@ -1,0 +1,102 @@
+  <!DOCTYPE html>
+<html>
+<head>
+    {% include "design/head.html" %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fees Search</title>
+        <script type="text/javascript">
+        function ConfirmDelete() {
+    return confirm("Are Your Sure Want to Delete");
+     }
+
+ </script>
+</head>
+<body>
+    {% include "design/accountantmid.html" %}   
+<h3>Fees Report Class Wise</h3>
+<form autocomplete="off" name="frmfeedetails" method="POST"  >
+ <div class="container-fluid mt-3" >
+  <div class="input-group" align="center">  
+    <div class="row">
+          <div class="form-group">
+            <div class="col-lg-12" style="text-align:left;">
+      <label>From Date:</label>
+      <input type="date" name="fromdate" placeholder="Enter Date" autofocus="on" required class="form-control">
+            </div>
+          </div>
+    </div>
+    <div class="row">
+          <div class="form-group">
+            <div class="col-lg-12" style="text-align:left;">
+     <label>To Date:</label>
+      <input type="date" name="todate" placeholder="Enter Date" required class="form-control">
+            </div>
+          </div>
+    </div>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-lg-12 mt-4" style="text-align:left;">
+            <select name="txtsearch" autofocus="on" required class="form-select">
+                <option  value="">Select class</option>
+                            {% for i in classdata %}        
+                                    <option value="{{i.id}}">{{i.className}}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+        <div class="col-lg-3 mt-4">
+    <input type="submit" name="btnsubmit" class="btn btn-info" value="Get Data">     
+    </div>       
+</div>
+</div>
+{% csrf_token %}
+</form>
+{% if feepaiddata %}
+    
+        <div class="container mt-3"  >
+  <div id="accordion">
+{% for s in studentdata %}
+         <table align="center" class="table table-bordered">
+        <tr>
+            <th>Class</th>
+            <th>Reciept No.</th>
+            <th>Student Id</th>
+            <th>Amount Paid</th>
+            <th>Payment Mode</th>
+            <th>Paid on</th>
+        </tr>
+        {% for f in feepaiddata %}
+         {% if s.id == f.studentid_id %}
+        <tr>
+            <td>{{classid}}</td>
+            <td>{{f.id}}</td>
+            <td>{{f.studentid_id}}</td>
+            <td>{{f.createdonind}}</td>
+            <td>{{f.ddlpaymentmode}}</td>        
+            <td>{{f.amountpaid}}</td>
+        </tr>
+          {%endif%}
+                      {%endfor%}
+                      {% endfor %}
+         </table>
+        </div>
+      <center>
+    </center>    
+      </div>
+
+    </div>
+</div>
+
+
+</div>
+</div>
+
+{% endif %}
+</div>
+</div>
+</div>
+{% include "design/last.html" %}
+
+</html>

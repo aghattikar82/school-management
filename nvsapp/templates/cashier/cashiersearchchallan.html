@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dashboard</title>
+	{% load static %}
+
+{% include "design/head.html" %}
+</head>
+<body>
+{% include "design/cashiermid.html" %}
+<h3>Fees  Collection</h3>
+<form name="searchchallan" method="post" autocomplete="off">
+
+	<input type="hidden" name="operation" value="search">
+	<table class="table" >
+		<tr>
+			<td>
+				<input autofocus="on" class="form-control" type="number" name="txtchallannumber" pattern="[0-9]{1,50}" placeholder="Enter Challan Number">	
+			</td>
+			<td>
+				<input type="submit" name="btnsubmit" value="Get Details" class="btn btn-warning">
+			</td>
+		</tr>
+	</table>
+	{% csrf_token %}
+</form>
+{% if challandata %}
+    <div class="container mt-3"  >
+  <div id="accordion">
+
+
+    <div class="card">
+  <div id="printableArea" >
+         <table align="center" class="table table-bordered">
+        <tr>
+          <th>Challan No.</th>
+          <th>Issued on</th>
+          <th>Student Id</th>
+          <th>Student Name</th>
+          <th>Class-Section</th>
+          <th>Fees Heading</th>
+          <th>Status</th>
+          <th>Amount</th>
+          
+        </tr>
+      {% for cp in challandata %}
+          <tr>
+            <td>{{cp.id}}</td>
+            <td>{{cp.createdonind}}</td>
+            <td>{{cp.studentid_id}}</td>
+            <td>{{cp.studentid.studentname}} {{cp.studentid.fathername}} {{cp.studentid.surname}}</td>
+            <td>{{cp.studentid.chooseclass}} {{cp.studentid.section}}</td>
+            <td>{{cp.feestypeid.feestemplate}}-TERM {{cp.feestypeid.feesterm}}</td>
+            <td>{{cp.paymentstatus}}</td>
+            <td>{{cp.totalamounttopay}}</td>
+          </tr>
+         </table>
+         <center>
+			         		{%if cp.paymentstatus == "NEW" %}
+
+         	<form name="frm" method="post" >
+
+       	<input type="hidden" name="operation" value="payment">
+
+         		<table class="table">
+         		<tr>
+         			<td style="width:30%;"><font color="red">*</font><b> Payment Mode</b></td>
+         			<td>
+         				<select class="form-select" name="paymentmode" required>
+         						<option>Select Payment Mode</option>
+         						<option>Cash</option>
+         						<option>UPI</option>
+         						<option>Cheque</option>
+         						<option>Demand Draft</option>
+
+         				</select>
+         			</td>
+         		</tr>	
+         		<tr>
+         			<td><font color="red">*</font><b>Payment Details</b></td>
+         			<td>
+         				<textarea name="paymentdetails" required class="form-control" placeholder="Enter Payment Details"></textarea>
+         			</td>
+         		</tr>	
+         		<tr>
+         			<td align="center" colspan="2">
+			         		<input type="hidden" name="amountpaid" value="{{cp.amounttopay}}">
+				         		<input type="hidden" name="challanid" value="{{cp.id}}">
+         				    <input type="hidden" name="studentid" value="{{cp.studentid_id}}">
+         				    <input type="hidden" name="classid" value="{{cp.studentid.chooseclass_id}}">
+         				    <input type="hidden" name="sectionid" value="{{cp.studentid.section_id}}">
+         				    <input type="hidden" name="instituteid" value="{{cp.studentid.instituteid_id}}">
+         				    <input type="hidden" name="academicyearid" value="{{cp.studentid.academicyearid_id}}">
+         				    <input type="hidden" name="studentname" value="{{cp.studentid.studentname}} {{cp.studentid.fathername}} {{cp.studentid.surname}}">
+         				    <input type="hidden" name="mobilenumber" value="{{cp.studentid.mobileno}}">
+         				    <input type="hidden" name="instituteidstudentid" value="{{cp.studentid.instituteid_id}}">
+			         		<input type="hidden" name="classsection" value="{{cp.studentid.chooseclass}} {{cp.studentid.section}}">
+         				    
+			         		<input type="submit" class="btn btn-success" name="btnsubmit" value="Make Payment">
+			{% csrf_token %}
+         	</form>
+							{%else%}
+							<form name="frm" method="post">
+								<input type="hidden" name="operation" value="printreciept">
+								 		<input type="hidden" name="challanid" value="{{cp.id}}">
+			         		<input type="submit" class="btn btn-success" name="btnsubmit" value="Print Reciept">
+         				{% csrf_token %}
+							</form>
+							{%endif%}	
+							
+
+
+							{% endfor %}
+
+
+         			</td>
+         		</tr>
+         		</table>
+         </center>
+        </div>   
+      </div>
+    </div>
+</div>
+</div>
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+
+{% include "design/last.html" %}  
+
+	
+</body>
+</html>

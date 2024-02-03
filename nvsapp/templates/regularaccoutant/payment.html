@@ -1,0 +1,77 @@
+<!DOCTYPE html><html>
+<head>
+  <title>Search Student Data</title>
+    {% include "acc_temp/head.html" %}
+    
+
+</head>
+<body>
+{% include "acc_temp/accountantmid.html" %}
+ 
+<form action="/Payment/Create" id="validate_form" method="post" novalidate=""><input name="__RequestVerificationToken" type="hidden" value="NJYXPKqq217khslCIZ9EGANY6OiyT0RPCfLy2nSQzjo2iRsQCljbOHhhI-bfUAlrZyKw9g1xEBWoc4UONXZR9Gz_tMR6XS1wDY17x4C0c801" data-parsley-error-message="Valid input required." placeholder="">    <h3 class="mt-4 mb-4">New Payment</h3>
+    <p class="text-danger"></p>
+    <div class="box">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="AYear">Academic Year</label>
+                    <select name="AYear" id="AYear" required="" class="form-control" fdprocessedid="4ixi5">
+                        <option value="2023-24">2023-24</option><option value="2022-23">2022-23</option><option value="2021-22">2021-22</option><option value="2020-21">2020-21</option><option value="2019-20">2019-20</option><option value="2018-19">2018-19</option><option value="2017-18">2017-18</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="VDate">Voucher Date</label>
+                    <input type="text" name="VDate" id="VDate" placeholder="" required="" data-parsley-type="date" data-type="dateIso" data-parsley-error-message="Valid date required." data-parsley-trigger="keyup" class="form-control" value="22-05-2023" fdprocessedid="v05p1r">
+                </div>
+            </div>            
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="LedgerId">Choose Ledger Account</label>
+                    <select name="LedgerId" id="LedgerId" required="" class="form-control" fdprocessedid="qbmk0e">
+                        <option value="">(Choose Ledger Account)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="PType">Choose Payment Type</label>
+                    <select name="PType" id="PType" required="" class="form-control" fdprocessedid="i5ulc">
+                        <option value="1">Cash</option>
+                        <option value="2">Bank</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="Amount">Amount Paid</label>
+                    <input type="text" name="Amount" id="Amount" placeholder="" required="" data-parsley-type="number" data-parsley-error-message="Valid amount required." data-parsley-trigger="keyup" class="form-control" value="" fdprocessedid="x3sqok">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="Details">Payment Details</label>
+                    <input type="text" name="Details" id="Details" placeholder="" required="" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" value="" fdprocessedid="szfwj">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="Remarks">Remarks</label>
+                    <input type="text" name="Remarks" id="Remarks" placeholder="" data-parsley-error-message="Valid input required." data-parsley-trigger="keyup" class="form-control" value="" fdprocessedid="77zfe5">
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="form-group text-right">
+            <input type="submit" id="submit" name="submit" value="Save Voucher" class="btn btn-success" data-parsley-error-message="Valid input required." placeholder="" fdprocessedid="54ri4t">
+            <a href="/Payment" class="btn btn-danger">Go Back</a>
+        </div>
+    </div>
+</form>
+
+    {% include "acc_temp/last.html" %}
+
+</body>
+</html>
